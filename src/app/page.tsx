@@ -70,7 +70,7 @@ export default function Home() {
                   </p>
                   <h1
                     className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white whitespace-nowrap"
-                    style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
+                    style={{ fontSize: "clamp(3.5rem, 14vw, 280px)" }}
                   >
                     Harvey
                   </h1>
@@ -78,7 +78,7 @@ export default function Home() {
                 <h1
                   data-hero-specter
                   className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white mix-blend-overlay whitespace-nowrap"
-                  style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
+                  style={{ fontSize: "clamp(3.5rem, 14vw, 280px)" }}
                 >
                   Specter
                 </h1>
