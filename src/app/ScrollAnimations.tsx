@@ -32,6 +32,33 @@ export default function ScrollAnimations() {
         ease: "power3.out",
       });
 
+      // About portrait — black curtain reveal from right to left
+      const darkContainer = document.querySelector("[data-img-reveal-dark]");
+      const darkImg = document.querySelector("[data-img-reveal-dark-img]");
+      if (darkContainer && darkImg) {
+        // Create a black overlay element
+        const overlay = document.createElement("div");
+        overlay.style.cssText = "position:absolute;inset:0;background:black;z-index:2;";
+        (darkContainer as HTMLElement).appendChild(overlay);
+
+        gsap.set(darkImg, { scale: 1.3 });
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: darkContainer,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        })
+          .fromTo(
+            overlay,
+            { xPercent: -100 },
+            { xPercent: 0, duration: 0.6, ease: "power3.inOut" }
+          )
+          .to(overlay, { xPercent: 100, duration: 0.6, ease: "power3.inOut" })
+          .to(darkImg, { scale: 1, duration: 1.2, ease: "power2.out" }, "-=0.6");
+      }
+
       // About — text fades from left, image from right
       gsap.from("[data-about-text]", {
         scrollTrigger: {
