@@ -17,6 +17,7 @@ export default function PageLoader() {
       onComplete: () => {
         document.body.style.overflow = "";
         setVisible(false);
+        window.dispatchEvent(new CustomEvent("loaderDone"));
       },
     });
 
@@ -75,22 +76,23 @@ export default function PageLoader() {
     >
       <div className="flex flex-col items-center gap-6 w-[200px]">
         {/* Logo / brand text */}
-        <div ref={textRef} className="flex flex-col items-center gap-2 opacity-0">
+        <div ref={textRef} className="flex flex-col items-center gap-6 opacity-0">
           <span className="text-white text-2xl font-semibold tracking-[-0.04em] capitalize">
             H.Studio
           </span>
+
+          {/* Progress track */}
+          <div ref={lineRef} className="w-full h-px bg-white/20 origin-left">
+            <div
+              ref={progressRef}
+              className="h-full bg-white origin-left"
+              style={{ transform: "scaleX(0)" }}
+            />
+          </div>
+
           <span className="font-mono text-xs uppercase text-white/40 tracking-wide">
             [ loading ]
           </span>
-        </div>
-
-        {/* Progress track */}
-        <div ref={lineRef} className="w-full h-px bg-white/20 origin-left">
-          <div
-            ref={progressRef}
-            className="h-full bg-white origin-left"
-            style={{ transform: "scaleX(0)" }}
-          />
         </div>
       </div>
     </div>

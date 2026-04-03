@@ -10,6 +10,7 @@ export default function ScrollAnimations() {
   useEffect(() => {
     const cleanups: (() => void)[] = [];
 
+    const init = () => {
     const ctx = gsap.context(() => {
       // Hero scroll parallax — text splits, image grows
       const heroSection = document.querySelector("[data-hero-section]");
@@ -278,8 +279,14 @@ export default function ScrollAnimations() {
       });
     });
 
+    cleanups.push(() => ctx.revert());
+    };
+
+    // Wait for loader to finish before starting animations
+    window.addEventListener("loaderDone", init, { once: true });
+
     return () => {
-      ctx.revert();
+      window.removeEventListener("loaderDone", init);
       cleanups.forEach((fn) => fn());
     };
   }, []);

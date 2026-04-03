@@ -19,16 +19,16 @@ export default function Navbar() {
 
   useEffect(() => setMounted(true), []);
 
-  // Slide in on load
+  // Slide in after loader
   useEffect(() => {
     if (!navRef.current) return;
-    gsap.from(navRef.current, {
-      y: -30,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      delay: 0.1,
-    });
+    const nav = navRef.current;
+    gsap.set(nav, { y: -30, opacity: 0 });
+    const onReady = () => {
+      gsap.to(nav, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.1 });
+    };
+    window.addEventListener("loaderDone", onReady, { once: true });
+    return () => window.removeEventListener("loaderDone", onReady);
   }, []);
 
   // Detect dark sections under the nav
