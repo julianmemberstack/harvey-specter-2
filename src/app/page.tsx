@@ -636,6 +636,81 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* News Section */}
+      <section className="w-full max-w-[1440px] bg-[#f3f3f3] overflow-clip px-4 md:px-8 py-16 md:py-[120px]">
+        {/* Mobile: horizontal title + scroll */}
+        <div className="md:hidden">
+          <h2 className="text-2xl font-bold uppercase tracking-[-0.04em] leading-[1.1] mb-6">
+            Keep up with my latest news &amp; achievements
+          </h2>
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+            {[
+              { image: "/pictures/keepup-1.jpg", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+              { image: "/pictures/keepup-2.jpg", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+              { image: "/pictures/keepup-3.jpg", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+            ].map((article, i) => (
+              <div key={i} className="flex flex-col gap-4 min-w-[80vw] max-w-[320px] shrink-0 snap-start">
+                <div className="relative w-full aspect-[353/469]">
+                  <Image src={article.image} alt="News" fill className="object-cover" sizes="80vw" />
+                </div>
+                <p className="text-sm leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">{article.text}</p>
+                <div className="flex items-center gap-2 border-b border-black pb-1 self-start">
+                  <span className="text-sm font-medium tracking-[-0.04em]">Read more</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: rotated title + 3 cards */}
+        <div className="hidden md:flex items-end justify-between">
+          {/* Rotated title */}
+          <div className="flex h-[706px] items-center justify-center shrink-0 w-[110px]">
+            <div className="-rotate-90 whitespace-nowrap">
+              <h2
+                className="font-light uppercase tracking-[-0.08em] leading-[0.86]"
+                style={{ fontSize: "clamp(2rem, 4.44vw, 64px)" }}
+              >
+                Keep up with my latest<br />news &amp; achievements
+              </h2>
+            </div>
+          </div>
+
+          {/* Article cards */}
+          <div className="flex gap-0 items-start w-[1020px]">
+            {[
+              { image: "/pictures/keepup-1.jpg", offset: false },
+              { image: "/pictures/keepup-2.jpg", offset: true },
+              { image: "/pictures/keepup-3.jpg", offset: false },
+            ].map((article, i) => (
+              <div key={i} className="flex items-start">
+                {/* Divider line between cards */}
+                {i > 0 && (
+                  <div className="w-px self-stretch bg-[#1f1f1f]/20 mx-4 shrink-0" />
+                )}
+                <div className={`flex flex-col gap-4 w-[353px] shrink-0 ${article.offset ? "pt-[120px]" : "h-[581px]"}`}>
+                  <div className="relative w-full h-[469px] shrink-0">
+                    <Image src={article.image} alt="News" fill className="object-cover" sizes="353px" />
+                  </div>
+                  <p className="flex-1 text-sm leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                  <div className="flex items-center gap-2 border-b border-black pb-1 self-start">
+                    <span className="text-sm font-medium tracking-[-0.04em]">Read more</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
