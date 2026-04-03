@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ScrollAnimations from "./ScrollAnimations";
+import Navbar from "./Navbar";
 
 export default function Home() {
   return (
@@ -34,26 +35,7 @@ export default function Home() {
           <span className="text-base font-semibold tracking-[-0.04em] capitalize">
             H.Studio
           </span>
-
-          <div className="hidden md:flex items-center gap-8 lg:gap-14 text-base font-semibold tracking-[-0.04em] capitalize">
-            <span>About</span>
-            <span>Services</span>
-            <span>Projects</span>
-            <span>News</span>
-            <span>Contact</span>
-          </div>
-
-          {/* Desktop CTA */}
-          <button className="hidden md:block bg-black text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap">
-            Let&apos;s talk
-          </button>
-
-          {/* Mobile hamburger */}
-          <button className="md:hidden flex flex-col gap-[6px] w-8 py-1" aria-label="Menu">
-            <span className="block w-full h-[2px] bg-black" />
-            <span className="block w-full h-[2px] bg-black" />
-            <span className="block w-full h-[2px] bg-black" />
-          </button>
+          <Navbar />
         </nav>
 
         {/* Hero Content — pushed to bottom */}
