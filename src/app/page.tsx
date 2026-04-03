@@ -62,7 +62,7 @@ export default function Home() {
             </div>
             {/* Desktop: single line split */}
             <div className="hidden md:flex justify-center">
-              <div className="flex items-end gap-[0.15em]">
+              <div className="flex items-end gap-[0.35em]">
                 <div data-hero-harvey>
                   <p className="font-mono text-sm uppercase text-white mix-blend-overlay leading-[1.1] mb-[-0.4em] pl-[0.15em]">
                     [ Hello i&apos;m ]

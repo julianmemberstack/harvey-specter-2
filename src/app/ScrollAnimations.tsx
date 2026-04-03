@@ -14,6 +14,7 @@ export default function ScrollAnimations() {
       // Hero scroll parallax — text splits, image grows
       const heroSection = document.querySelector("[data-hero-section]");
       if (heroSection) {
+        gsap.set("[data-hero-bg]", { scale: 1.1 });
         gsap.to("[data-hero-bg]", {
           scrollTrigger: {
             trigger: heroSection,
@@ -21,7 +22,7 @@ export default function ScrollAnimations() {
             end: "bottom top",
             scrub: true,
           },
-          scale: 1.15,
+          scale: 1.25,
           ease: "none",
         });
         gsap.to("[data-hero-harvey]", {
