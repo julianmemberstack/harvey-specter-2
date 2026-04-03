@@ -247,6 +247,66 @@ export default function Home() {
           />
         </div>
       </section>
+      {/* Services / Deliverables Section */}
+      <section className="w-full max-w-[1440px] bg-black text-white overflow-clip px-4 md:px-8 py-16 md:py-20">
+        <div className="flex flex-col gap-10 md:gap-12">
+          {/* Header */}
+          <span className="font-mono text-sm uppercase leading-[1.1]">
+            [ services ]
+          </span>
+          <div
+            className="flex items-center justify-between uppercase font-light tracking-[-0.08em] leading-normal"
+            style={{ fontSize: "clamp(2rem, 6.67vw, 96px)" }}
+          >
+            <span>[4]</span>
+            <span>Deliverables</span>
+          </div>
+
+          {/* Service Items */}
+          <div className="flex flex-col gap-10 md:gap-12">
+            {[
+              { num: 1, title: "Brand Discovery", image: "/pictures/brand-discovery.jpg" },
+              { num: 2, title: "Web Design & Dev", image: "/pictures/web-design-dev.jpg" },
+              { num: 3, title: "Marketing", image: "/pictures/marketing.jpg" },
+              { num: 4, title: "Photography", image: "/pictures/photography.jpg" },
+            ].map((service) => (
+              <div key={service.num} className="flex flex-col gap-2">
+                {/* Number + divider */}
+                <span className="font-mono text-sm uppercase leading-[1.1]">
+                  [ {service.num} ]
+                </span>
+                <div className="w-full h-px bg-white/40" />
+
+                {/* Content row */}
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6 mt-1">
+                  {/* Title */}
+                  <h3 className="text-2xl md:text-4xl font-bold italic uppercase tracking-[-0.04em] leading-[1.1] shrink-0">
+                    {service.title}
+                  </h3>
+
+                  {/* Description + thumbnail */}
+                  <div className="flex flex-col md:flex-row gap-4 md:gap-6 md:items-start">
+                    <p className="text-sm leading-[1.3] tracking-[-0.04em] text-white md:w-[393px]">
+                      Placeholder description of this service. Explain the value
+                      you provide and the outcomes clients can expect. Keep it to
+                      two or three sentences.
+                    </p>
+                    <div className="relative w-full md:w-[151px] aspect-square md:aspect-square shrink-0">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 151px"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
