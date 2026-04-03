@@ -8,7 +8,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-[-8%_-5%_0_-5%]">
           <Image
-            src="/pictures/hero-background-image.jpg"
+            src="/pictures/hero-background-image.png"
             alt="Hero background"
             fill
             className="object-cover object-[center_25%]"
