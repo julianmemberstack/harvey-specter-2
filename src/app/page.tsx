@@ -384,7 +384,7 @@ export default function Home() {
                   <h3 className="text-xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
                     {project.title}
                   </h3>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="-rotate-90">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
@@ -404,9 +404,9 @@ export default function Home() {
           </div>
 
           {/* Desktop: two-column masonry */}
-          <div className="hidden md:flex gap-6 items-end">
+          <div className="hidden md:flex gap-6 items-stretch">
             {/* Left column */}
-            <div className="flex-1 flex flex-col justify-between h-full gap-0">
+            <div className="flex-1 flex flex-col justify-between">
               {/* Project 1: Surfers Paradise */}
               <div className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[744px]">
@@ -424,7 +424,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Surfers Paradise</h3>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="-rotate-90">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
@@ -447,7 +447,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Cyberpunk Caffe</h3>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="-rotate-90">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
@@ -494,7 +494,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Agency 976</h3>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="-rotate-90">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
@@ -517,7 +517,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Minimal Playground</h3>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="-rotate-90">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
