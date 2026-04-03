@@ -1,7 +1,6 @@
 import Image from "next/image";
 import ScrollAnimations from "./ScrollAnimations";
 import Navbar from "./Navbar";
-import LiquidImage from "./LiquidImage";
 
 export default function Home() {
   return (
@@ -438,17 +437,11 @@ export default function Home() {
               {/* Project 1: Surfers Paradise */}
               <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[744px]">
-                  <LiquidImage
-                    src="/pictures/Page 1/Frame 3763.jpg"
-                    alt="Surfers Paradise"
-                    className="w-full h-full"
-                    objectPosition="object-left"
-                  >
-                    <div className="absolute bottom-4 left-4 flex gap-3 z-10">
-                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
-                    </div>
-                  </LiquidImage>
+                  <Image src="/pictures/Page 1/Frame 3763.jpg" alt="Surfers Paradise" fill className="object-cover object-left" sizes="50vw" />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  </div>
                 </div>
                 <a href="#" className="group flex items-center justify-between">
                   <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
@@ -464,16 +457,11 @@ export default function Home() {
               {/* Project 2: Cyberpunk Caffe */}
               <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[699px]">
-                  <LiquidImage
-                    src="/pictures/Page 1/Frame 3763_2.jpg"
-                    alt="Cyberpunk Caffe"
-                    className="w-full h-full"
-                  >
-                    <div className="absolute bottom-4 left-4 flex gap-3 z-10">
-                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
-                    </div>
-                  </LiquidImage>
+                  <Image src="/pictures/Page 1/Frame 3763_2.jpg" alt="Cyberpunk Caffe" fill className="object-cover" sizes="50vw" />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  </div>
                 </div>
                 <a href="#" className="group flex items-center justify-between">
                   <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
@@ -509,20 +497,15 @@ export default function Home() {
             </div>
 
             {/* Right column — offset down */}
-            <div className="flex-1 flex flex-col gap-[117px] pt-[240px]">
+            <div data-portfolio-right className="flex-1 flex flex-col gap-[117px] pt-[240px]">
               {/* Project 3: Agency 976 */}
               <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[699px]">
-                  <LiquidImage
-                    src="/pictures/Page 1/Frame 3763_3.jpg"
-                    alt="Agency 976"
-                    className="w-full h-full"
-                  >
-                    <div className="absolute bottom-4 left-4 flex gap-3 z-10">
-                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
-                    </div>
-                  </LiquidImage>
+                  <Image src="/pictures/Page 1/Frame 3763_3.jpg" alt="Agency 976" fill className="object-cover" sizes="50vw" />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  </div>
                 </div>
                 <a href="#" className="group flex items-center justify-between">
                   <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
@@ -538,16 +521,11 @@ export default function Home() {
               {/* Project 4: Minimal Playground */}
               <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[744px]">
-                  <LiquidImage
-                    src="/pictures/Page 1/Frame 3763_4.jpg"
-                    alt="Minimal Playground"
-                    className="w-full h-full"
-                  >
-                    <div className="absolute bottom-4 left-4 flex gap-3 z-10">
-                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
-                    </div>
-                  </LiquidImage>
+                  <Image src="/pictures/Page 1/Frame 3763_4.jpg" alt="Minimal Playground" fill className="object-cover" sizes="50vw" />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  </div>
                 </div>
                 <a href="#" className="group flex items-center justify-between">
                   <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">

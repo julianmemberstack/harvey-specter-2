@@ -150,17 +150,16 @@ export default function ScrollAnimations() {
         ease: "power3.out",
       });
 
-      // Portfolio — images scale in subtly
-      gsap.from("[data-portfolio-item]", {
+      // Portfolio — right column parallax (starts 200px lower, scrolls into place)
+      gsap.fromTo("[data-portfolio-right]", { y: 200 }, {
         scrollTrigger: {
           trigger: "[data-portfolio]",
-          start: "top 70%",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
         },
-        scale: 0.95,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
+        y: -200,
+        ease: "none",
       });
 
       // Portfolio header
@@ -201,32 +200,18 @@ export default function ScrollAnimations() {
 
         });
 
-        // Sequential highlight — single timeline for all cards
-        const total = cards.length;
-        const seg = 1 / total;
-        const fade = 0.06;
-
-        const highlightTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: testimonialsSection,
-            start: "top 50%",
-            end: "bottom 50%",
-            scrub: true,
-          },
-        });
-
-        cards.forEach((card, i) => {
-          gsap.set(card, { opacity: i === 0 ? 1 : 0.35 });
-
-          const on = i * seg;
-          const off = (i + 1) * seg;
-
-          if (i > 0) {
-            highlightTl.to(card, { opacity: 1, duration: fade, ease: "power1.inOut" }, on);
-          }
-          if (i < total - 1) {
-            highlightTl.to(card, { opacity: 0.35, duration: fade, ease: "power1.inOut" }, off - fade);
-          }
+        // Cards scale up as you scroll through
+        cards.forEach((card) => {
+          gsap.fromTo(card, { scale: 0.85 }, {
+            scrollTrigger: {
+              trigger: testimonialsSection,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+            scale: 1,
+            ease: "none",
+          });
         });
 
         // Title — slow opposing parallax
