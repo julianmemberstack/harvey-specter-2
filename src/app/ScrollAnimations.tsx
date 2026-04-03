@@ -205,12 +205,10 @@ export default function ScrollAnimations() {
             ease: "none",
           });
 
-          // Sequential highlight: each card gets 25% of the scroll
+          // Sequential highlight: quick snap between cards
           const total = cards.length;
-          const startPct = i / total;       // 0, 0.25, 0.5, 0.75
-          const peakPct = startPct + 0.5 / total; // fade in over first half of its segment
-          const fadeOutStart = startPct + 0.5 / total;
-          const endPct = (i + 1) / total;   // 0.25, 0.5, 0.75, 1.0
+          const segmentSize = 1 / total;
+          const fadeTime = 0.03; // very fast transition
 
           const tl = gsap.timeline({
             scrollTrigger: {
@@ -221,14 +219,16 @@ export default function ScrollAnimations() {
             },
           });
 
-          // Start dimmed
-          gsap.set(card, { opacity: i === 0 ? 1 : 0.2 });
+          gsap.set(card, { opacity: i === 0 ? 1 : 0.15 });
+
+          const segStart = i * segmentSize;
+          const segEnd = (i + 1) * segmentSize;
 
           // Fade in at start of segment
-          tl.to(card, { opacity: 1, duration: peakPct - startPct, ease: "none" }, startPct);
-          // Fade out at end of segment (except last card stays lit)
+          tl.to(card, { opacity: 1, duration: fadeTime, ease: "none" }, segStart);
+          // Fade out at end of segment (last card stays)
           if (i < total - 1) {
-            tl.to(card, { opacity: 0.2, duration: endPct - fadeOutStart, ease: "none" }, fadeOutStart);
+            tl.to(card, { opacity: 0.15, duration: fadeTime, ease: "none" }, segEnd - fadeTime);
           }
         });
 
