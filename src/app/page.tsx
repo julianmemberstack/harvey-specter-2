@@ -123,19 +123,19 @@ export default function Home() {
 
           {/* Mobile: centered, no stagger */}
           <div className="md:hidden flex flex-col items-center gap-2 uppercase font-light tracking-[-0.08em] text-black leading-[0.84] text-[32px]">
-            <span data-bio-line className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
+            <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
               001
             </span>
-            <span data-bio-line className="whitespace-nowrap">A creative director &nbsp;/</span>
-            <span data-bio-line>Photographer</span>
-            <span data-bio-line>
+            <span className="whitespace-nowrap">A creative director &nbsp;/</span>
+            <span>Photographer</span>
+            <span>
               Born{" "}
               <span className="font-playfair italic font-normal">&amp;</span>
               {" "}raised
             </span>
-            <span data-bio-line>on the south side</span>
-            <span data-bio-line>of chicago.</span>
-            <span data-bio-line className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
+            <span>on the south side</span>
+            <span>of chicago.</span>
+            <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
               [ creative freelancer ]
             </span>
           </div>
@@ -170,7 +170,7 @@ export default function Home() {
             <div data-bio-line className="pl-[44%]">
               <span>of chicago.</span>
             </div>
-            <div data-bio-line className="flex justify-end">
+            <div className="flex justify-end">
               <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f] whitespace-nowrap">
                 [ creative freelancer ]
               </span>

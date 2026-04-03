@@ -54,27 +54,14 @@ export default function ScrollAnimations() {
         ease: "power3.out",
         delay: 0.6,
       });
-      // Bio — each line staggers in
-      gsap.from("[data-bio-line]", {
-        scrollTrigger: {
-          trigger: "[data-bio]",
-          start: "top 80%",
-        },
-        y: 60,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: "power3.out",
-      });
-
       // Bio — text fill scrub per line (gray to black)
       const bioFillLines = document.querySelectorAll("[data-bio-fill] [data-bio-line]");
       bioFillLines.forEach((line) => {
         gsap.to(line, {
           scrollTrigger: {
             trigger: line,
-            start: "top 80%",
-            end: "top 50%",
+            start: "top 95%",
+            end: "top 60%",
             scrub: true,
           },
           color: "#000",
