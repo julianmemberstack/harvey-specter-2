@@ -105,7 +105,7 @@ export default function Home() {
         </div>
       </section>
       {/* Bio Section */}
-      <section className="w-full max-w-[1440px] overflow-clip px-5 md:px-8 py-20 md:py-[120px]">
+      <section className="w-full max-w-[1440px] overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
         <div className="flex flex-col gap-6">
           {/* Top label + divider */}
           <div className="flex flex-col gap-3 items-end">
@@ -115,12 +115,30 @@ export default function Home() {
             <div className="w-full h-px bg-[#1f1f1f]" />
           </div>
 
-          {/* Staggered typography */}
+          {/* Mobile: centered, no stagger */}
+          <div className="md:hidden flex flex-col items-center gap-2 uppercase font-light tracking-[-0.08em] text-black leading-[0.84] text-[32px]">
+            <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
+              001
+            </span>
+            <span className="whitespace-nowrap">A creative director &nbsp;/</span>
+            <span>Photographer</span>
+            <span>
+              Born{" "}
+              <span className="font-playfair italic font-normal">&amp;</span>
+              {" "}raised
+            </span>
+            <span>on the south side</span>
+            <span>of chicago.</span>
+            <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
+              [ creative freelancer ]
+            </span>
+          </div>
+
+          {/* Desktop: staggered typography */}
           <div
-            className="flex flex-col gap-1 md:gap-2 uppercase font-light tracking-[-0.08em] text-black leading-[0.84]"
+            className="hidden md:flex flex-col gap-2 uppercase font-light tracking-[-0.08em] text-black leading-[0.84]"
             style={{ fontSize: "clamp(2.5rem, 6.67vw, 96px)" }}
           >
-            {/* Line 1: A creative director / */}
             <div className="flex items-start gap-3">
               <span className="whitespace-nowrap">
                 A creative director &nbsp;&nbsp;/
@@ -129,32 +147,90 @@ export default function Home() {
                 001
               </span>
             </div>
-
-            {/* Line 2: Photographer (indented) */}
-            <div className="md:pl-[15.5%]">
+            <div className="pl-[15.5%]">
               <span>Photographer</span>
             </div>
-
-            {/* Line 3: Born & raised (more indented) */}
-            <div className="md:pl-[44.3%]">
+            <div className="pl-[44.3%]">
               <span>
                 Born{" "}
                 <span className="font-playfair italic font-normal">&amp;</span>
                 {" "}raised
               </span>
             </div>
-
-            {/* Line 4: on the south side */}
             <div>
               <span>on the south side</span>
             </div>
-
-            {/* Line 5: of chicago. (indented) + label */}
-            <div className="relative md:pl-[44%]">
+            <div className="relative pl-[44%]">
               <span>of chicago.</span>
-              <span className="hidden md:inline font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f] absolute right-0 top-[26px] whitespace-nowrap">
+              <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f] absolute right-0 top-[26px] whitespace-nowrap">
                 [ creative freelancer ]
               </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* About Section */}
+      <section className="w-full max-w-[1440px] overflow-clip px-4 md:px-8 py-12 md:py-20">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-5 md:gap-8">
+          {/* Labels — on mobile: stacked 002 + [ About ]; on desktop: just [ About ] */}
+          <div className="flex flex-col gap-2 shrink-0">
+            <span className="md:hidden font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1]">
+              002
+            </span>
+            <span className="font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1] whitespace-nowrap">
+              [ About ]
+            </span>
+          </div>
+
+          {/* Content area */}
+          <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-end w-full md:w-[983px]">
+            {/* Text with bracket decorations */}
+            <div className="flex-1 flex items-stretch gap-3">
+              {/* Left brackets */}
+              <div className="flex flex-col justify-between w-6 shrink-0 text-[#1f1f1f]">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 15V1H15" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1V15H15" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+              </div>
+
+              {/* Paragraph */}
+              <p className="flex-1 text-sm leading-[1.3] tracking-[-0.04em] text-[#1f1f1f] py-3">
+                Placeholder paragraph one. This is where you introduce yourself
+                — your background, your passion for your craft, and what drives
+                you creatively. Two to three sentences work best here.
+                Placeholder paragraph two. Here you can describe your technical
+                approach, how you collaborate with clients, or what sets your
+                work apart from others in your field.
+              </p>
+
+              {/* Right brackets */}
+              <div className="flex flex-col justify-between w-6 shrink-0 text-[#1f1f1f]">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 15V1H1" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 1V15H1" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Image + 002 label */}
+            <div className="flex gap-6 items-start shrink-0 w-full md:w-auto">
+              <span className="hidden md:block font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1]">
+                002
+              </span>
+              <div className="relative w-full md:w-[436px] aspect-[422/594]">
+                <Image
+                  src="/pictures/about-portrait.jpg"
+                  alt="Portrait"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 436px"
+                />
+              </div>
             </div>
           </div>
         </div>
