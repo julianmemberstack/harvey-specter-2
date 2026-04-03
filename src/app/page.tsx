@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="bg-[#fafafa] flex flex-col items-center border-x border-black max-w-[1440px] mx-auto">
+    <main className="bg-[#fafafa] flex flex-col items-center border-x border-t border-black max-w-[1440px] mx-auto">
       {/* Hero Section */}
       <section className="relative w-full min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
         {/* Background Image */}
