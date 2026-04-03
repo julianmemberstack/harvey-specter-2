@@ -108,27 +108,21 @@ export default function ScrollAnimations() {
         delay: 0.2,
       });
 
-      // Full-width photo — curtain reveal with scale
-      const imgContainer = document.querySelector("[data-img-reveal]");
+      // Full-width photo — blur to sharp on scroll
       const imgEl = document.querySelector("[data-img-reveal-img]");
-      if (imgContainer && imgEl) {
-        gsap.set(imgEl, { scale: 1.3, opacity: 0 });
-
-        gsap.timeline({
+      if (imgEl) {
+        gsap.set(imgEl, { filter: "blur(20px)", scale: 1.05 });
+        gsap.to(imgEl, {
           scrollTrigger: {
-            trigger: imgContainer,
-            start: "top 80%",
-            toggleActions: "play none none none",
+            trigger: imgEl,
+            start: "top bottom",
+            end: "center center",
+            scrub: true,
           },
-        })
-          .to(imgEl, { opacity: 1, duration: 0.1 })
-          .fromTo(
-            imgContainer,
-            { clipPath: "inset(0 100% 0 0)" },
-            { clipPath: "inset(0 0% 0 0)", duration: 1.2, ease: "power3.inOut" },
-            "<"
-          )
-          .to(imgEl, { scale: 1, duration: 1.2, ease: "power2.out" }, "-=0.8");
+          filter: "blur(0px)",
+          scale: 1,
+          ease: "none",
+        });
       }
 
       // Services — each item slides up
