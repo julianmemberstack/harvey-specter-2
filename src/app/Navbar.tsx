@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 import gsap from "gsap";
 
 const NAV_LINKS = ["About", "Services", "Projects", "News", "Contact"];
@@ -56,50 +57,23 @@ export default function Navbar() {
     }
   }, [isOpen]);
 
-  return (
+  const mobileOverlay = (
     <>
-      {/* Desktop nav links with hover animation */}
-      <div className="hidden md:flex items-center gap-8 lg:gap-14 text-base font-semibold tracking-[-0.04em] capitalize">
-        {NAV_LINKS.map((link) => (
-          <span key={link} className="group relative cursor-pointer py-1">
-            {link}
-            <span className="absolute left-0 bottom-0 w-full h-[1.5px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
-          </span>
-        ))}
-      </div>
-
-      {/* Desktop CTA */}
-      <button className="hidden md:block bg-black text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap">
-        Let&apos;s talk
-      </button>
-
-      {/* Mobile hamburger / close */}
+      {/* Mobile hamburger / close — portaled to escape overflow-clip */}
       <button
-        className="md:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
+        className="md:hidden fixed top-6 right-5 z-50 flex flex-col justify-center items-center w-8 h-8"
         aria-label={isOpen ? "Close menu" : "Open menu"}
         onClick={() => setIsOpen(!isOpen)}
+        style={{ display: isOpen ? "flex" : "none" }}
       >
         <span
-          className="block w-full h-[2px] transition-all duration-300 ease-out origin-center"
-          style={{
-            backgroundColor: isOpen ? "#fff" : "#000",
-            transform: isOpen ? "translateY(4px) rotate(45deg)" : "translateY(-4px) rotate(0deg)",
-          }}
+          className="block w-full h-[2px] bg-white transition-all duration-300 ease-out origin-center"
+          style={{ transform: "translateY(4px) rotate(45deg)" }}
         />
+        <span className="block w-full h-[2px] bg-white opacity-0" />
         <span
-          className="block w-full h-[2px] transition-all duration-300 ease-out"
-          style={{
-            backgroundColor: isOpen ? "#fff" : "#000",
-            opacity: isOpen ? 0 : 1,
-            transform: isOpen ? "scaleX(0)" : "scaleX(1)",
-          }}
-        />
-        <span
-          className="block w-full h-[2px] transition-all duration-300 ease-out origin-center"
-          style={{
-            backgroundColor: isOpen ? "#fff" : "#000",
-            transform: isOpen ? "translateY(-4px) rotate(-45deg)" : "translateY(4px) rotate(0deg)",
-          }}
+          className="block w-full h-[2px] bg-white transition-all duration-300 ease-out origin-center"
+          style={{ transform: "translateY(-4px) rotate(-45deg)" }}
         />
       </button>
 
@@ -131,6 +105,39 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Desktop nav links with hover animation */}
+      <div className="hidden md:flex items-center gap-8 lg:gap-14 text-base font-semibold tracking-[-0.04em] capitalize">
+        {NAV_LINKS.map((link) => (
+          <span key={link} className="group relative cursor-pointer py-1">
+            {link}
+            <span className="absolute left-0 bottom-0 w-full h-[1.5px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+          </span>
+        ))}
+      </div>
+
+      {/* Desktop CTA */}
+      <button className="hidden md:block bg-black text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap">
+        Let&apos;s talk
+      </button>
+
+      {/* Mobile hamburger (inline, inside nav) */}
+      <button
+        className="md:hidden relative z-10 flex flex-col gap-[6px] w-8 py-1"
+        aria-label="Menu"
+        onClick={() => setIsOpen(true)}
+      >
+        <span className="block w-full h-[2px] bg-black" />
+        <span className="block w-full h-[2px] bg-black" />
+        <span className="block w-full h-[2px] bg-black" />
+      </button>
+
+      {/* Portal overlay + close button to body to escape overflow-clip */}
+      {typeof document !== "undefined" && createPortal(mobileOverlay, document.body)}
     </>
   );
 }
