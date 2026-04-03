@@ -11,7 +11,41 @@ export default function ScrollAnimations() {
     const cleanups: (() => void)[] = [];
 
     const ctx = gsap.context(() => {
-      // Hero name uses CSS animation to preserve mix-blend-overlay
+      // Hero scroll parallax — text splits, image grows
+      const heroSection = document.querySelector("[data-hero-section]");
+      if (heroSection) {
+        gsap.to("[data-hero-bg]", {
+          scrollTrigger: {
+            trigger: heroSection,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+          scale: 1.15,
+          ease: "none",
+        });
+        gsap.to("[data-hero-harvey]", {
+          scrollTrigger: {
+            trigger: heroSection,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+          xPercent: -120,
+          ease: "none",
+        });
+        gsap.to("[data-hero-specter]", {
+          scrollTrigger: {
+            trigger: heroSection,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+          xPercent: 120,
+          ease: "none",
+        });
+      }
+
       gsap.from("[data-hero-desc]", {
         y: 30,
         opacity: 0,
@@ -32,16 +66,11 @@ export default function ScrollAnimations() {
         ease: "power3.out",
       });
 
-      // About portrait — black curtain reveal from right to left
+      // About portrait — black curtain wipe reveal from right to left
       const darkContainer = document.querySelector("[data-img-reveal-dark]");
       const darkImg = document.querySelector("[data-img-reveal-dark-img]");
       if (darkContainer && darkImg) {
-        // Create a black overlay element
-        const overlay = document.createElement("div");
-        overlay.style.cssText = "position:absolute;inset:0;background:black;z-index:2;";
-        (darkContainer as HTMLElement).appendChild(overlay);
-
-        gsap.set(darkImg, { scale: 1.3 });
+        gsap.set(darkImg, { scale: 1.3, opacity: 0 });
 
         gsap.timeline({
           scrollTrigger: {
@@ -50,13 +79,14 @@ export default function ScrollAnimations() {
             toggleActions: "play none none none",
           },
         })
+          .to(darkImg, { opacity: 1, duration: 0.1 })
           .fromTo(
-            overlay,
-            { xPercent: -100 },
-            { xPercent: 0, duration: 0.6, ease: "power3.inOut" }
+            darkContainer,
+            { clipPath: "inset(0 0 0 100%)" },
+            { clipPath: "inset(0 0 0 0%)", duration: 1.2, ease: "power3.inOut" },
+            "<"
           )
-          .to(overlay, { xPercent: 100, duration: 0.6, ease: "power3.inOut" })
-          .to(darkImg, { scale: 1, duration: 1.2, ease: "power2.out" }, "-=0.6");
+          .to(darkImg, { scale: 1, duration: 1.2, ease: "power2.out" }, "-=0.8");
       }
 
       // About — text fades from left, image from right

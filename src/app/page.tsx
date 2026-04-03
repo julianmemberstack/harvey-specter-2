@@ -8,10 +8,11 @@ export default function Home() {
       <ScrollAnimations />
       <Navbar />
       {/* Hero Section */}
-      <section className="relative w-full min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
+      <section data-hero-section className="relative w-full min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
+            data-hero-bg
             src="/pictures/hero-background-image.jpg"
             alt="Hero background"
             fill
@@ -37,25 +38,50 @@ export default function Home() {
         {/* Hero Content — pushed to bottom */}
         <div className="relative w-full mt-auto px-5 md:px-8 pb-8 md:pb-12">
           {/* Name block — inline-block centers the text block, then hello aligns to its left edge */}
-          <div data-hero-name className="w-full text-center">
-            <div className="inline-block text-center md:text-left">
-              <p className="font-mono text-xs md:text-sm uppercase text-white mix-blend-overlay leading-[1.1] mb-[-0.4em] md:pl-[0.15em]">
-                [ Hello i&apos;m ]
-              </p>
-              {/* Mobile: stacked, each word fills width */}
+          <div data-hero-name className="w-full overflow-visible">
+            {/* Mobile: stacked */}
+            <div className="md:hidden text-center">
+              <div data-hero-harvey className="inline-block">
+                <p className="font-mono text-xs uppercase text-white mix-blend-overlay leading-[1.1] mb-[-0.4em]">
+                  [ Hello i&apos;m ]
+                </p>
+                <h1
+                  className="font-medium capitalize leading-[1] tracking-[-0.07em] text-white mix-blend-overlay"
+                  style={{ fontSize: "clamp(5rem, 22vw, 10rem)" }}
+                >
+                  Harvey
+                </h1>
+              </div>
               <h1
-                className="md:hidden font-medium capitalize leading-[1] tracking-[-0.07em] text-white mix-blend-overlay"
+                data-hero-specter
+                className="font-medium capitalize leading-[1] tracking-[-0.07em] text-white mix-blend-overlay text-center"
                 style={{ fontSize: "clamp(5rem, 22vw, 10rem)" }}
               >
-                Harvey<br />Specter
+                Specter
               </h1>
-              {/* Desktop: single line */}
-              <h1
-                className="hidden md:block font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white mix-blend-overlay whitespace-nowrap"
-                style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
-              >
-                Harvey&nbsp;&nbsp;Specter
-              </h1>
+            </div>
+            {/* Desktop: single line split */}
+            <div className="hidden md:flex justify-center">
+              <div className="flex items-end gap-[0.15em]">
+                <div data-hero-harvey>
+                  <p className="font-mono text-sm uppercase text-white mix-blend-overlay leading-[1.1] mb-[-0.4em] pl-[0.15em]">
+                    [ Hello i&apos;m ]
+                  </p>
+                  <h1
+                    className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white mix-blend-overlay whitespace-nowrap"
+                    style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
+                  >
+                    Harvey
+                  </h1>
+                </div>
+                <h1
+                  data-hero-specter
+                  className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white mix-blend-overlay whitespace-nowrap"
+                  style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
+                >
+                  Specter
+                </h1>
+              </div>
             </div>
           </div>
 

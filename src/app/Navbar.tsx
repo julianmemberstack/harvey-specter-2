@@ -9,12 +9,15 @@ const NAV_LINKS = ["About", "Services", "Projects", "News", "Contact"];
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   const close = useCallback(() => setIsOpen(false), []);
+
+  useEffect(() => setMounted(true), []);
 
   // Detect dark sections under the nav
   useEffect(() => {
@@ -218,8 +221,7 @@ export default function Navbar() {
       </nav>
 
       {/* Portal overlay to body */}
-      {typeof document !== "undefined" &&
-        createPortal(mobileOverlay, document.body)}
+      {mounted && createPortal(mobileOverlay, document.body)}
     </>
   );
 }
