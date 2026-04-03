@@ -146,11 +146,11 @@ export default function Home() {
             className="hidden md:flex flex-col gap-2 uppercase font-light tracking-[-0.08em] text-[#d0d0d0] leading-[0.84]"
             style={{ fontSize: "clamp(2.5rem, 6.67vw, 96px)" }}
           >
-            <div data-bio-line className="flex items-start gap-3">
+            <div data-bio-line className="flex items-start gap-3 text-black">
               <span className="whitespace-nowrap">
                 A creative director &nbsp;&nbsp;/
               </span>
-              <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f] mt-1">
+              <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] mt-1">
                 001
               </span>
             </div>
