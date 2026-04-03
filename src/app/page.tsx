@@ -232,7 +232,7 @@ export default function Home() {
               <span className="hidden md:block font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1]">
                 002
               </span>
-              <div data-img-reveal-dark className="relative w-full md:w-[436px] aspect-[422/594] overflow-clip">
+              <div data-img-reveal-dark className="relative w-full md:w-[436px] aspect-[422/594] overflow-clip bg-black">
                 <Image
                   data-img-reveal-dark-img
                   src="/pictures/about-portrait.jpg"
