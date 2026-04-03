@@ -62,7 +62,7 @@ export default function Home() {
             </div>
             {/* Desktop: single line split */}
             <div className="hidden md:flex justify-center">
-              <div className="flex items-end gap-[0.35em]">
+              <div className="flex items-end gap-[20px]">
                 <div data-hero-harvey>
                   <p className="font-mono text-sm uppercase text-white mix-blend-overlay leading-[1.1] mb-[-0.4em] pl-[0.15em]">
                     [ Hello i&apos;m ]
@@ -274,28 +274,33 @@ export default function Home() {
           {/* Service Items */}
           <div className="flex flex-col gap-10 md:gap-12">
             {[
-              { num: 1, title: "Brand Discovery", image: "/pictures/brand-discovery.jpg" },
-              { num: 2, title: "Web Design & Dev", image: "/pictures/web-design-dev.jpg" },
-              { num: 3, title: "Marketing", image: "/pictures/marketing.jpg" },
-              { num: 4, title: "Photography", image: "/pictures/photography.jpg" },
+              { num: 1, title: "Brand Discovery", image: "/pictures/brand-discovery.jpg", accent: "#F5A623" },
+              { num: 2, title: "Web Design & Dev", image: "/pictures/web-design-dev.jpg", accent: "#4DD9E8" },
+              { num: 3, title: "Marketing", image: "/pictures/marketing.jpg", accent: "#FF6B6B" },
+              { num: 4, title: "Photography", image: "/pictures/photography.jpg", accent: "#A78BFA" },
             ].map((service) => (
-              <div key={service.num} data-service-item className="flex flex-col gap-2">
+              <div
+                key={service.num}
+                data-service-item
+                className="group flex flex-col gap-2 cursor-pointer transition-colors duration-300"
+                style={{ "--accent": service.accent } as React.CSSProperties}
+              >
                 {/* Number + divider */}
-                <span className="font-mono text-sm uppercase leading-[1.1]">
+                <span className="font-mono text-sm uppercase leading-[1.1] transition-colors duration-300 group-hover:text-[var(--accent)]">
                   [ {service.num} ]
                 </span>
-                <div className="w-full h-px bg-white/40" />
+                <div className="w-full h-px bg-white/40 transition-colors duration-300 group-hover:bg-[var(--accent)]" />
 
                 {/* Content row */}
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6 mt-1">
                   {/* Title */}
-                  <h3 className="text-2xl md:text-4xl font-bold italic uppercase tracking-[-0.04em] leading-[1.1] shrink-0">
+                  <h3 className="text-2xl md:text-4xl font-bold italic uppercase tracking-[-0.04em] leading-[1.1] shrink-0 transition-colors duration-300 group-hover:text-[var(--accent)]">
                     {service.title}
                   </h3>
 
                   {/* Description + thumbnail */}
                   <div className="flex flex-col md:flex-row gap-4 md:gap-6 md:items-start">
-                    <p className="text-sm leading-[1.3] tracking-[-0.04em] text-white md:w-[393px]">
+                    <p className="text-sm leading-[1.3] tracking-[-0.04em] text-white md:w-[393px] transition-colors duration-300 group-hover:text-[var(--accent)]">
                       Placeholder description of this service. Explain the value
                       you provide and the outcomes clients can expect. Keep it to
                       two or three sentences.
