@@ -16,8 +16,8 @@ export default function Home() {
             src="/pictures/hero-background-image.jpg"
             alt="Hero background"
             fill
-            className="object-cover object-top"
-            sizes="100vw"
+            className="object-cover object-top md:object-[center_top] object-[60%_top]"
+            sizes="200vw"
             priority
           />
         </div>
