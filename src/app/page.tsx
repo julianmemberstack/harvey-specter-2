@@ -6,7 +6,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative w-full max-w-[1440px] min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
         {/* Background Image */}
-        <div className="absolute inset-[-8%_-5%_0_-5%]">
+        <div className="absolute inset-0">
           <Image
             src="/pictures/hero-background-image.png"
             alt="Hero background"
