@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="bg-[#fafafa] flex flex-col items-center">
+    <main className="bg-[#fafafa] flex flex-col items-center border-x border-black max-w-[1440px] mx-auto">
       {/* Hero Section */}
-      <section className="relative w-full max-w-[1440px] min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
+      <section className="relative w-full min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -105,7 +105,7 @@ export default function Home() {
         </div>
       </section>
       {/* Bio Section */}
-      <section className="w-full max-w-[1440px] overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
+      <section className="w-full overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
         <div className="flex flex-col gap-6">
           {/* Top label + divider */}
           <div className="flex flex-col gap-3 items-end">
@@ -170,7 +170,7 @@ export default function Home() {
         </div>
       </section>
       {/* About Section */}
-      <section className="w-full max-w-[1440px] overflow-clip px-4 md:px-8 py-12 md:py-20">
+      <section className="w-full overflow-clip px-4 md:px-8 py-12 md:py-20">
         <div className="flex flex-col md:flex-row items-start justify-between gap-5 md:gap-8">
           {/* Labels — on mobile: stacked 002 + [ About ]; on desktop: just [ About ] */}
           <div className="flex flex-col gap-2 shrink-0">
@@ -236,7 +236,7 @@ export default function Home() {
         </div>
       </section>
       {/* Full-width Photo Break */}
-      <section className="w-full max-w-[1440px]">
+      <section className="w-full">
         <div className="relative w-full aspect-[1440/900] md:aspect-[1440/900]">
           <Image
             src="/pictures/deliverables-large.jpg"
@@ -248,7 +248,7 @@ export default function Home() {
         </div>
       </section>
       {/* Services / Deliverables Section */}
-      <section className="w-full max-w-[1440px] bg-black text-white overflow-clip px-4 md:px-8 py-16 md:py-20">
+      <section className="w-full bg-black text-white overflow-clip px-4 md:px-8 py-16 md:py-20">
         <div className="flex flex-col gap-10 md:gap-12">
           {/* Header */}
           <span className="font-mono text-sm uppercase leading-[1.1]">
@@ -308,7 +308,7 @@ export default function Home() {
         </div>
       </section>
       {/* Selected Work Section */}
-      <section className="w-full max-w-[1440px] overflow-clip px-4 md:px-8 py-16 md:py-20">
+      <section className="w-full overflow-clip px-4 md:px-8 py-16 md:py-20">
         <div className="flex flex-col gap-10 md:gap-[61px]">
           {/* Header */}
           <div className="flex items-center justify-between">
@@ -538,7 +538,7 @@ export default function Home() {
       </section>
       {/* Testimonials Section */}
       {/* Mobile: title + scattered overlapping cards */}
-      <section className="md:hidden w-full max-w-[1440px] py-16 overflow-clip">
+      <section className="md:hidden w-full py-16 overflow-clip">
         <h2
           className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-black px-4 mb-6"
           style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
@@ -574,7 +574,7 @@ export default function Home() {
       </section>
 
       {/* Desktop: scattered cards around large title */}
-      <section className="hidden md:block w-full max-w-[1440px] overflow-clip px-8 py-[120px]">
+      <section className="hidden md:block w-full overflow-clip px-8 py-[120px]">
         <div className="relative h-[987px] flex items-center justify-center">
           <h2
             className="relative z-10 font-medium capitalize text-center leading-[1.1] tracking-[-0.07em] text-black pointer-events-none"
@@ -637,7 +637,7 @@ export default function Home() {
         </div>
       </section>
       {/* News Section */}
-      <section className="w-full max-w-[1440px] bg-[#f3f3f3] overflow-clip px-4 md:px-8 py-16 md:py-[120px]">
+      <section className="w-full bg-[#f3f3f3] overflow-clip px-4 md:px-8 py-16 md:py-[120px]">
         {/* Mobile: horizontal title + scroll */}
         <div className="md:hidden">
           <h2 className="text-2xl font-bold uppercase tracking-[-0.04em] leading-[1.1] mb-6">
@@ -712,7 +712,7 @@ export default function Home() {
         </div>
       </section>
       {/* Footer */}
-      <footer className="w-full max-w-[1440px] bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
+      <footer className="w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
         <div className="flex flex-col gap-12 md:gap-[120px]">
           {/* Top area */}
           <div className="flex flex-col gap-8 md:gap-12">
