@@ -181,30 +181,46 @@ export default function ScrollAnimations() {
         ease: "power3.out",
       });
 
-      // Testimonials — cards drift in with slight rotation
-      gsap.from("[data-testimonial-card]", {
-        scrollTrigger: {
-          trigger: "[data-testimonials]",
-          start: "top 75%",
-        },
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power2.out",
-      });
+      // Testimonials — parallax depth layers
+      const testimonialsSection = document.querySelector("[data-testimonials].hidden");
+      if (testimonialsSection) {
+        const cards = testimonialsSection.querySelectorAll("[data-testimonial-card]");
+        const speeds = [120, -80, 100, -60]; // alternating directions + varying speeds
+        const rotations = [4, -3, -5, 6]; // subtle rotation shifts
 
-      // Testimonials title
-      gsap.from("[data-testimonials-title]", {
-        scrollTrigger: {
-          trigger: "[data-testimonials]",
-          start: "top 80%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-      });
+        cards.forEach((card, i) => {
+          gsap.fromTo(card, {
+            y: speeds[i],
+            rotation: (rotations[i] || 0) * -1,
+            opacity: 0,
+          }, {
+            scrollTrigger: {
+              trigger: testimonialsSection,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.8,
+            },
+            y: speeds[i] * -1,
+            rotation: rotations[i] || 0,
+            opacity: 1,
+            ease: "none",
+          });
+        });
+
+        // Title — slow opposing parallax
+        gsap.fromTo("[data-testimonials-title]", {
+          y: 60,
+        }, {
+          scrollTrigger: {
+            trigger: testimonialsSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.5,
+          },
+          y: -60,
+          ease: "none",
+        });
+      }
 
       // News — cards slide up staggered
       gsap.from("[data-news-card]", {
