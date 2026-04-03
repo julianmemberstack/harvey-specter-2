@@ -114,7 +114,7 @@ export default function Home() {
       <section data-bio className="w-full overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
         <div className="flex flex-col gap-6">
           {/* Top label + divider */}
-          <div data-bio-line className="flex flex-col gap-3 items-end">
+          <div className="flex flex-col gap-3 items-end">
             <span className="font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1] text-right w-full">
               [ 8+ years in industry ]
             </span>
@@ -146,7 +146,7 @@ export default function Home() {
             className="hidden md:flex flex-col gap-2 uppercase font-light tracking-[-0.08em] text-[#d0d0d0] leading-[0.84]"
             style={{ fontSize: "clamp(2.5rem, 6.67vw, 96px)" }}
           >
-            <div data-bio-line className="flex items-start gap-3 text-black">
+            <div className="flex items-start gap-3 text-black">
               <span className="whitespace-nowrap">
                 A creative director &nbsp;&nbsp;/
               </span>
