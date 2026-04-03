@@ -41,12 +41,12 @@ export default function Home() {
           <div data-hero-name className="w-full overflow-visible">
             {/* Mobile: stacked */}
             <div className="md:hidden text-center">
-              <div data-hero-harvey className="inline-block">
-                <p className="font-mono text-xs uppercase text-white mix-blend-overlay leading-[1.1] mb-[-0.4em]">
+              <div data-hero-harvey className="inline-block mix-blend-overlay">
+                <p className="font-mono text-xs uppercase text-white leading-[1.1] mb-[-0.4em]">
                   [ Hello i&apos;m ]
                 </p>
                 <h1
-                  className="font-medium capitalize leading-[1] tracking-[-0.07em] text-white mix-blend-overlay"
+                  className="font-medium capitalize leading-[1] tracking-[-0.07em] text-white"
                   style={{ fontSize: "clamp(5rem, 22vw, 10rem)" }}
                 >
                   Harvey
@@ -63,12 +63,12 @@ export default function Home() {
             {/* Desktop: single line split */}
             <div className="hidden md:flex justify-center">
               <div className="flex items-end gap-[20px]">
-                <div data-hero-harvey>
-                  <p className="font-mono text-sm uppercase text-white mix-blend-overlay leading-[1.1] mb-[-0.4em] pl-[0.15em]">
+                <div data-hero-harvey className="mix-blend-overlay">
+                  <p className="font-mono text-sm uppercase text-white leading-[1.1] mb-[-0.4em] pl-[0.15em]">
                     [ Hello i&apos;m ]
                   </p>
                   <h1
-                    className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white mix-blend-overlay whitespace-nowrap"
+                    className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white whitespace-nowrap"
                     style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
                   >
                     Harvey
