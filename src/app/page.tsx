@@ -443,11 +443,12 @@ export default function Home() {
                     alt="Surfers Paradise"
                     className="w-full h-full"
                     objectPosition="object-left"
-                  />
-                  <div className="absolute bottom-4 left-4 flex gap-3 z-10">
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
-                  </div>
+                  >
+                    <div className="absolute bottom-4 left-4 flex gap-3 z-10">
+                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                    </div>
+                  </LiquidImage>
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Surfers Paradise</h3>
@@ -464,11 +465,12 @@ export default function Home() {
                     src="/pictures/Page 1/Frame 3763_2.jpg"
                     alt="Cyberpunk Caffe"
                     className="w-full h-full"
-                  />
-                  <div className="absolute bottom-4 left-4 flex gap-3 z-10">
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
-                  </div>
+                  >
+                    <div className="absolute bottom-4 left-4 flex gap-3 z-10">
+                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                    </div>
+                  </LiquidImage>
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Cyberpunk Caffe</h3>
@@ -509,11 +511,12 @@ export default function Home() {
                     src="/pictures/Page 1/Frame 3763_3.jpg"
                     alt="Agency 976"
                     className="w-full h-full"
-                  />
-                  <div className="absolute bottom-4 left-4 flex gap-3 z-10">
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
-                  </div>
+                  >
+                    <div className="absolute bottom-4 left-4 flex gap-3 z-10">
+                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                    </div>
+                  </LiquidImage>
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Agency 976</h3>
@@ -530,11 +533,12 @@ export default function Home() {
                     src="/pictures/Page 1/Frame 3763_4.jpg"
                     alt="Minimal Playground"
                     className="w-full h-full"
-                  />
-                  <div className="absolute bottom-4 left-4 flex gap-3 z-10">
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
-                  </div>
+                  >
+                    <div className="absolute bottom-4 left-4 flex gap-3 z-10">
+                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                      <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                    </div>
+                  </LiquidImage>
                 </div>
                 <div className="flex items-center justify-between">
                   <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Minimal Playground</h3>

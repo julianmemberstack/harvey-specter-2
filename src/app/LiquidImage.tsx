@@ -10,6 +10,7 @@ interface LiquidImageProps {
   className?: string;
   sizes?: string;
   objectPosition?: string;
+  children?: React.ReactNode;
 }
 
 export default function LiquidImage({
@@ -18,16 +19,15 @@ export default function LiquidImage({
   className = "",
   sizes = "50vw",
   objectPosition,
+  children,
 }: LiquidImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
-  const shineRef = useRef<HTMLDivElement>(null);
 
   const handleMove = (e: React.MouseEvent) => {
     const container = containerRef.current;
     const img = imgRef.current;
-    const shine = shineRef.current;
-    if (!container || !img || !shine) return;
+    if (!container || !img) return;
 
     const rect = container.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width; // 0-1
@@ -49,22 +49,12 @@ export default function LiquidImage({
       duration: 0.4,
       ease: "power2.out",
     });
-
-    // Move shine to follow cursor
-    gsap.to(shine, {
-      opacity: 1,
-      x: `${x * 100}%`,
-      y: `${y * 100}%`,
-      duration: 0.3,
-      ease: "power2.out",
-    });
   };
 
   const handleLeave = () => {
     const container = containerRef.current;
     const img = imgRef.current;
-    const shine = shineRef.current;
-    if (!container || !img || !shine) return;
+    if (!container || !img) return;
 
     gsap.to(container, {
       rotateX: 0,
@@ -77,11 +67,6 @@ export default function LiquidImage({
       scale: 1,
       duration: 0.6,
       ease: "power2.out",
-    });
-
-    gsap.to(shine, {
-      opacity: 0,
-      duration: 0.4,
     });
   };
 
@@ -103,18 +88,7 @@ export default function LiquidImage({
         />
       </div>
 
-      {/* Shine / light reflection overlay */}
-      <div
-        ref={shineRef}
-        className="absolute w-[300px] h-[300px] pointer-events-none opacity-0"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%)",
-          transform: "translate(-50%, -50%)",
-          top: 0,
-          left: 0,
-        }}
-      />
+      {children}
     </div>
   );
 }
