@@ -537,27 +537,39 @@ export default function Home() {
         </div>
       </section>
       {/* Testimonials Section */}
-      {/* Mobile: title + horizontal scroll */}
-      <section className="md:hidden w-full max-w-[1440px] py-16">
+      {/* Mobile: title + scattered overlapping cards */}
+      <section className="md:hidden w-full max-w-[1440px] py-16 overflow-clip">
         <h2
-          className="font-medium capitalize text-center leading-[1.1] tracking-[-0.07em] text-black px-4 mb-8"
+          className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-black px-4 mb-6"
           style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
         >
           Testimonials
         </h2>
-        <div className="flex gap-4 overflow-x-auto px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
-          {[
-            { logo: "/pictures/logo-1.svg", logoW: 143, logoH: 19, quote: "A brilliant creative partner who transformed our vision into a unique, high-impact brand identity. Their ability to craft everything from custom mascots to polished logos is truly impressive.", name: "Marko Stojković" },
-            { logo: "/pictures/logo-2.svg", logoW: 138, logoH: 19, quote: "Professional, precise, and incredibly fast at handling complex product visualizations and templates.", name: "Lukas Weber" },
-            { logo: "/pictures/logo-3.svg", logoW: 109, logoH: 31, quote: "A strategic partner who balances stunning aesthetics with high-performance UX for complex platforms. They don\u2019t just make things look good; they solve business problems through visual clarity.", name: "Sarah Jenkins" },
-            { logo: "/pictures/logo-4.svg", logoW: 81, logoH: 36, quote: "An incredibly versatile designer who delivers consistent quality across a wide range of styles and formats.", name: "Sofia Martínez" },
-          ].map((t) => (
-            <div key={t.name} className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-5 rounded-[4px] min-w-[280px] max-w-[300px] shrink-0 snap-start">
-              <Image src={t.logo} alt="Logo" width={t.logoW} height={t.logoH} className="h-5 w-auto" />
-              <p className="text-sm leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">{t.quote}</p>
-              <p className="text-sm font-black uppercase tracking-[-0.04em] leading-[1.1]">{t.name}</p>
+        <div className="relative min-h-[520px] px-4">
+          {/* Card 1 — Marko (large, front-left) */}
+          <div className="absolute left-4 top-0 rotate-[-4deg] z-10">
+            <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-5 rounded-[4px] w-[75vw] max-w-[300px]">
+              <Image src="/pictures/logo-1.svg" alt="Logo" width={143} height={19} className="h-5 w-auto" />
+              <p className="text-sm leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                A brilliant creative partner who transformed our vision into a
+                unique, high-impact brand identity. Their ability to craft
+                everything from custom mascots to polished logos is truly
+                impressive.
+              </p>
+              <p className="text-sm font-black uppercase tracking-[-0.04em] leading-[1.1]">Marko Stojković</p>
             </div>
-          ))}
+          </div>
+          {/* Card 4 — Sofia (peeking right) */}
+          <div className="absolute right-[-5%] top-[10px] rotate-[3deg] z-0">
+            <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-5 rounded-[4px] w-[65vw] max-w-[260px]">
+              <Image src="/pictures/logo-4.svg" alt="Logo" width={81} height={36} className="h-7 w-auto" />
+              <p className="text-sm leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                An incredibly versatile designer who delivers consistent quality
+                across a wide range of styles and formats.
+              </p>
+              <p className="text-sm font-black uppercase tracking-[-0.04em] leading-[1.1]">Sofia Martínez</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -565,7 +577,7 @@ export default function Home() {
       <section className="hidden md:block w-full max-w-[1440px] overflow-clip px-8 py-[120px]">
         <div className="relative h-[987px] flex items-center justify-center">
           <h2
-            className="font-medium capitalize text-center leading-[1.1] tracking-[-0.07em] text-black"
+            className="relative z-10 font-medium capitalize text-center leading-[1.1] tracking-[-0.07em] text-black pointer-events-none"
             style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
           >
             Testimonials
@@ -586,7 +598,7 @@ export default function Home() {
           </div>
 
           {/* Card 2 — Lukas (center-right, behind title) */}
-          <div className="absolute left-[47%] top-[27%] rotate-[2.9deg] -z-10">
+          <div className="absolute left-[47%] top-[27%] rotate-[2.9deg]">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-2.svg" alt="Logo" width={138} height={19} className="h-[19px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
