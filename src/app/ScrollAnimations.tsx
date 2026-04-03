@@ -205,30 +205,32 @@ export default function ScrollAnimations() {
             ease: "none",
           });
 
-          // Sequential highlight: quick snap between cards
+          // Sequential highlight across full section scroll
           const total = cards.length;
-          const segmentSize = 1 / total;
-          const fadeTime = 0.03; // very fast transition
+          const seg = 1 / total;         // 0.25 per card
+          const fade = 0.06;             // smooth but quick transition
 
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: testimonialsSection,
-              start: "top 80%",
-              end: "center 40%",
+              start: "top bottom",
+              end: "bottom top",
               scrub: true,
             },
           });
 
           gsap.set(card, { opacity: i === 0 ? 1 : 0.15 });
 
-          const segStart = i * segmentSize;
-          const segEnd = (i + 1) * segmentSize;
+          const on = i * seg;            // when this card lights up
+          const off = (i + 1) * seg;     // when it dims
 
-          // Fade in at start of segment
-          tl.to(card, { opacity: 1, duration: fadeTime, ease: "none" }, segStart);
-          // Fade out at end of segment (last card stays)
+          // Fade in
+          if (i > 0) {
+            tl.to(card, { opacity: 1, duration: fade, ease: "power1.inOut" }, on);
+          }
+          // Fade out (last card stays)
           if (i < total - 1) {
-            tl.to(card, { opacity: 0.15, duration: fadeTime, ease: "none" }, segEnd - fadeTime);
+            tl.to(card, { opacity: 0.15, duration: fade, ease: "power1.inOut" }, off - fade);
           }
         });
 
