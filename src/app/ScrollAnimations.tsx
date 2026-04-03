@@ -19,14 +19,6 @@ export default function ScrollAnimations() {
         ease: "power3.out",
         delay: 0.6,
       });
-      gsap.from("[data-hero-nav]", {
-        y: -20,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        delay: 0.1,
-      });
-
       // Bio — each line staggers in
       gsap.from("[data-bio-line]", {
         scrollTrigger: {
@@ -63,7 +55,28 @@ export default function ScrollAnimations() {
         delay: 0.2,
       });
 
-      // Full-width photo — no animation (parallax breaks with object-cover)
+      // Full-width photo — curtain reveal with scale
+      const imgContainer = document.querySelector("[data-img-reveal]");
+      const imgEl = document.querySelector("[data-img-reveal-img]");
+      if (imgContainer && imgEl) {
+        gsap.set(imgEl, { scale: 1.3, opacity: 0 });
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: imgContainer,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        })
+          .to(imgEl, { opacity: 1, duration: 0.1 })
+          .fromTo(
+            imgContainer,
+            { clipPath: "inset(0 100% 0 0)" },
+            { clipPath: "inset(0 0% 0 0)", duration: 1.2, ease: "power3.inOut" },
+            "<"
+          )
+          .to(imgEl, { scale: 1, duration: 1.2, ease: "power2.out" }, "-=0.8");
+      }
 
       // Services — each item slides up
       gsap.from("[data-service-item]", {

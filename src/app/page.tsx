@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <main className="bg-[#fafafa] flex flex-col items-center max-w-[1660px] mx-auto">
       <ScrollAnimations />
+      <Navbar />
       {/* Hero Section */}
       <section className="relative w-full min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
         {/* Background Image */}
@@ -30,13 +31,8 @@ export default function Home() {
           }}
         />
 
-        {/* Navbar */}
-        <nav data-hero-nav className="relative z-10 w-full flex items-center justify-between px-5 md:px-8 py-6">
-          <span className="text-base font-semibold tracking-[-0.04em] capitalize">
-            H.Studio
-          </span>
-          <Navbar />
-        </nav>
+        {/* Spacer for fixed nav */}
+        <div className="h-[72px]" />
 
         {/* Hero Content — pushed to bottom */}
         <div className="relative w-full mt-auto px-5 md:px-8 pb-8 md:pb-12">
@@ -221,8 +217,9 @@ export default function Home() {
       </section>
       {/* Full-width Photo Break */}
       <section className="w-full">
-        <div className="relative w-full aspect-[1440/900] md:aspect-[1440/900]">
+        <div data-img-reveal className="relative w-full aspect-[1440/900] md:aspect-[1440/900] overflow-clip">
           <Image
+            data-img-reveal-img
             src="/pictures/deliverables-large.jpg"
             alt="Photographer with camera"
             fill
@@ -232,7 +229,7 @@ export default function Home() {
         </div>
       </section>
       {/* Services / Deliverables Section */}
-      <section data-services className="w-full bg-black text-white overflow-clip px-4 md:px-8 py-16 md:py-20">
+      <section data-services data-nav-dark className="w-full bg-black text-white overflow-clip px-4 md:px-8 py-16 md:py-20">
         <div className="flex flex-col gap-10 md:gap-12">
           {/* Header */}
           <span data-services-header className="font-mono text-sm uppercase leading-[1.1]">
@@ -699,7 +696,7 @@ export default function Home() {
         </div>
       </section>
       {/* Footer */}
-      <footer data-footer className="w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
+      <footer data-footer data-nav-dark className="w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
         <div className="flex flex-col gap-12 md:gap-[120px]">
           {/* Top area */}
           <div data-footer-content className="flex flex-col gap-8 md:gap-12">

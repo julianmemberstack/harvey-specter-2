@@ -8,16 +8,61 @@ const NAV_LINKS = ["About", "Services", "Projects", "News", "Contact"];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   const close = useCallback(() => setIsOpen(false), []);
 
+  // Detect dark sections under the nav
+  useEffect(() => {
+    const darkSections = document.querySelectorAll("[data-nav-dark]");
+    if (!darkSections.length) return;
+
+    const observer = new IntersectionObserver(
+      () => {
+        // Check which dark sections overlap with the nav position (top 72px)
+        let overDark = false;
+        darkSections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < 72 && rect.bottom > 0) {
+            overDark = true;
+          }
+        });
+        setIsDark(overDark);
+      },
+      { threshold: 0, rootMargin: "-0px 0px -90% 0px" }
+    );
+
+    darkSections.forEach((s) => observer.observe(s));
+
+    // Also listen to scroll for more responsive updates
+    const onScroll = () => {
+      let overDark = false;
+      darkSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < 72 && rect.bottom > 0) {
+          overDark = true;
+        }
+      });
+      setIsDark(overDark);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   // Lock body scroll when open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   // Animate open/close
@@ -34,13 +79,23 @@ export default function Navbar() {
         .fromTo(
           overlayRef.current,
           { clipPath: "circle(0% at calc(100% - 36px) 36px)" },
-          { clipPath: "circle(150% at calc(100% - 36px) 36px)", duration: 0.7, ease: "power3.inOut" }
+          {
+            clipPath: "circle(150% at calc(100% - 36px) 36px)",
+            duration: 0.7,
+            ease: "power3.inOut",
+          }
         )
         .fromTo(
           linksRef.current.children,
-          { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power3.out" },
-          "-=0.3"
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.4,
+            stagger: 0.06,
+            ease: "power2.out",
+          },
+          "-=0.2"
         );
     } else {
       tl.to(linksRef.current.children, {
@@ -48,29 +103,28 @@ export default function Navbar() {
         duration: 0.25,
         stagger: 0.03,
         ease: "power2.in",
-      }).to(overlayRef.current, {
-        clipPath: "circle(0% at calc(100% - 36px) 36px)",
-        duration: 0.5,
-        ease: "power3.inOut",
-      }, "-=0.15").set(overlayRef.current, { display: "none" });
+      })
+        .to(
+          overlayRef.current,
+          {
+            clipPath: "circle(0% at calc(100% - 36px) 36px)",
+            duration: 0.5,
+            ease: "power3.inOut",
+          },
+          "-=0.15"
+        )
+        .set(overlayRef.current, { display: "none" });
     }
   }, [isOpen]);
 
+  const textColor = isDark ? "text-white" : "text-black";
+  const lineColor = isDark ? "bg-white" : "bg-black";
+  const btnClass = isDark
+    ? "bg-white text-black"
+    : "bg-black text-white";
+
   const mobileOverlay = (
     <>
-      {/* Mobile close button — portaled to escape overflow-clip */}
-      <button
-        className="md:hidden fixed top-6 right-5 z-50 w-8 h-8 flex items-center justify-center"
-        aria-label="Close menu"
-        onClick={() => setIsOpen(false)}
-        style={{ display: isOpen ? "flex" : "none" }}
-      >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round">
-          <line x1="2" y1="2" x2="18" y2="18" />
-          <line x1="18" y1="2" x2="2" y2="18" />
-        </svg>
-      </button>
-
       {/* Mobile fullscreen overlay */}
       <div
         ref={overlayRef}
@@ -104,34 +158,68 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Desktop nav links with hover animation */}
-      <div className="hidden md:flex items-center gap-8 lg:gap-14 text-base font-semibold tracking-[-0.04em] capitalize">
-        {NAV_LINKS.map((link) => (
-          <span key={link} className="group relative cursor-pointer py-1">
-            {link}
-            <span className="absolute left-0 bottom-0 w-full h-[1.5px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
-          </span>
-        ))}
-      </div>
-
-      {/* Desktop CTA */}
-      <button className="hidden md:block bg-black text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap">
-        Let&apos;s talk
-      </button>
-
-      {/* Mobile hamburger (inline, inside nav) */}
-      <button
-        className="md:hidden relative z-10 flex flex-col gap-[6px] w-8 py-1"
-        aria-label="Menu"
-        onClick={() => setIsOpen(true)}
+      <nav
+        ref={navRef}
+        className={`fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 md:px-8 py-6 transition-colors duration-300 ${textColor}`}
       >
-        <span className="block w-full h-[2px] bg-black" />
-        <span className="block w-full h-[2px] bg-black" />
-        <span className="block w-full h-[2px] bg-black" />
-      </button>
+        <span className="text-base font-semibold tracking-[-0.04em] capitalize">
+          H.Studio
+        </span>
 
-      {/* Portal overlay + close button to body to escape overflow-clip */}
-      {typeof document !== "undefined" && createPortal(mobileOverlay, document.body)}
+        {/* Desktop nav links */}
+        <div className="hidden md:flex items-center gap-8 lg:gap-14 text-base font-semibold tracking-[-0.04em] capitalize">
+          {NAV_LINKS.map((link) => (
+            <span key={link} className="group relative cursor-pointer py-1">
+              {link}
+              <span className="absolute left-0 bottom-0 w-full h-[1.5px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            </span>
+          ))}
+        </div>
+
+        {/* Desktop CTA */}
+        <button
+          className={`hidden md:block text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap transition-colors duration-300 ${btnClass}`}
+        >
+          Let&apos;s talk
+        </button>
+
+        {/* Mobile hamburger / X morph */}
+        <button
+          className="md:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span
+            className="block w-full h-[2px] absolute transition-all duration-300 ease-out"
+            style={{
+              backgroundColor: isOpen ? "#fff" : isDark ? "#fff" : "#000",
+              transform: isOpen
+                ? "rotate(45deg)"
+                : "translateY(-5px)",
+            }}
+          />
+          <span
+            className="block w-full h-[2px] absolute transition-all duration-300 ease-out"
+            style={{
+              backgroundColor: isOpen ? "#fff" : isDark ? "#fff" : "#000",
+              opacity: isOpen ? 0 : 1,
+            }}
+          />
+          <span
+            className="block w-full h-[2px] absolute transition-all duration-300 ease-out"
+            style={{
+              backgroundColor: isOpen ? "#fff" : isDark ? "#fff" : "#000",
+              transform: isOpen
+                ? "rotate(-45deg)"
+                : "translateY(5px)",
+            }}
+          />
+        </button>
+      </nav>
+
+      {/* Portal overlay to body */}
+      {typeof document !== "undefined" &&
+        createPortal(mobileOverlay, document.body)}
     </>
   );
 }
