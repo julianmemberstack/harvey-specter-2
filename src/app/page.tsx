@@ -246,7 +246,7 @@ export default function Home() {
         </div>
       </section>
       {/* Full-width Photo Break */}
-      <section className="w-full">
+      <section data-nav-dark className="w-full">
         <div data-img-reveal className="relative w-full aspect-[1440/900] md:aspect-[1440/900] overflow-clip">
           <Image
             data-img-reveal-img
