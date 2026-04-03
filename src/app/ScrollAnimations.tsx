@@ -14,7 +14,7 @@ export default function ScrollAnimations() {
       // Hero scroll parallax — text splits, image grows
       const heroSection = document.querySelector("[data-hero-section]");
       if (heroSection) {
-        gsap.set("[data-hero-bg]", { scale: 1.1 });
+        gsap.set("[data-hero-bg]", { scale: 1.3 });
         gsap.to("[data-hero-bg]", {
           scrollTrigger: {
             trigger: heroSection,
@@ -22,7 +22,7 @@ export default function ScrollAnimations() {
             end: "bottom top",
             scrub: true,
           },
-          scale: 1.25,
+          scale: 1.5,
           ease: "none",
         });
         gsap.to("[data-hero-harvey]", {
@@ -65,6 +65,21 @@ export default function ScrollAnimations() {
         duration: 0.7,
         stagger: 0.1,
         ease: "power3.out",
+      });
+
+      // Bio — text fill scrub (gray to black)
+      const bioLines = document.querySelectorAll("[data-bio-fill] [data-bio-line]");
+      bioLines.forEach((line) => {
+        gsap.to(line, {
+          scrollTrigger: {
+            trigger: line,
+            start: "top 85%",
+            end: "top 40%",
+            scrub: true,
+          },
+          color: "#000",
+          ease: "none",
+        });
       });
 
       // About portrait — black curtain wipe reveal from right to left

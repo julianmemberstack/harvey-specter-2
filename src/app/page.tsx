@@ -16,7 +16,7 @@ export default function Home() {
             src="/pictures/hero-background-image.jpg"
             alt="Hero background"
             fill
-            className="object-cover object-[center_25%]"
+            className="object-cover object-top"
             sizes="(max-width: 1440px) 100vw, 1440px"
             preload
           />
@@ -142,7 +142,8 @@ export default function Home() {
 
           {/* Desktop: staggered typography */}
           <div
-            className="hidden md:flex flex-col gap-2 uppercase font-light tracking-[-0.08em] text-black leading-[0.84]"
+            data-bio-fill
+            className="hidden md:flex flex-col gap-2 uppercase font-light tracking-[-0.08em] text-[#d0d0d0] leading-[0.84]"
             style={{ fontSize: "clamp(2.5rem, 6.67vw, 96px)" }}
           >
             <div data-bio-line className="flex items-start gap-3">
@@ -166,9 +167,11 @@ export default function Home() {
             <div data-bio-line>
               <span>on the south side</span>
             </div>
-            <div data-bio-line className="relative pl-[44%]">
+            <div data-bio-line className="pl-[44%]">
               <span>of chicago.</span>
-              <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f] absolute right-0 top-[26px] whitespace-nowrap">
+            </div>
+            <div data-bio-line className="flex justify-end">
+              <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f] whitespace-nowrap">
                 [ creative freelancer ]
               </span>
             </div>
