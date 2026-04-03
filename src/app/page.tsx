@@ -1,8 +1,10 @@
 import Image from "next/image";
+import ScrollAnimations from "./ScrollAnimations";
 
 export default function Home() {
   return (
     <main className="bg-[#fafafa] flex flex-col items-center max-w-[1660px] mx-auto">
+      <ScrollAnimations />
       {/* Hero Section */}
       <section className="relative w-full min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
         {/* Background Image */}
@@ -28,7 +30,7 @@ export default function Home() {
         />
 
         {/* Navbar */}
-        <nav className="relative z-10 w-full flex items-center justify-between px-5 md:px-8 py-6">
+        <nav data-hero-nav className="relative z-10 w-full flex items-center justify-between px-5 md:px-8 py-6">
           <span className="text-base font-semibold tracking-[-0.04em] capitalize">
             H.Studio
           </span>
@@ -57,7 +59,7 @@ export default function Home() {
         {/* Hero Content — pushed to bottom */}
         <div className="relative w-full mt-auto px-5 md:px-8 pb-8 md:pb-12">
           {/* Name block — inline-block centers the text block, then hello aligns to its left edge */}
-          <div className="w-full text-center">
+          <div data-hero-name className="w-full text-center">
             <div className="inline-block text-center md:text-left">
               <p className="font-mono text-xs md:text-sm uppercase text-white mix-blend-overlay leading-[1.1] mb-[-0.4em] md:pl-[0.15em]">
                 [ Hello i&apos;m ]
@@ -80,7 +82,7 @@ export default function Home() {
           </div>
 
           {/* Description + CTA */}
-          <div className="w-full flex flex-col items-start md:items-end mt-4 md:mt-2">
+          <div data-hero-desc className="w-full flex flex-col items-start md:items-end mt-4 md:mt-2">
             <div className="flex flex-col items-start gap-4">
               <p className="w-full md:w-[294px] text-sm uppercase leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
                 <span className="font-bold italic">H.Studio is a </span>
@@ -105,10 +107,10 @@ export default function Home() {
         </div>
       </section>
       {/* Bio Section */}
-      <section className="w-full overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
+      <section data-bio className="w-full overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
         <div className="flex flex-col gap-6">
           {/* Top label + divider */}
-          <div className="flex flex-col gap-3 items-end">
+          <div data-bio-line className="flex flex-col gap-3 items-end">
             <span className="font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1] text-right w-full">
               [ 8+ years in industry ]
             </span>
@@ -117,19 +119,19 @@ export default function Home() {
 
           {/* Mobile: centered, no stagger */}
           <div className="md:hidden flex flex-col items-center gap-2 uppercase font-light tracking-[-0.08em] text-black leading-[0.84] text-[32px]">
-            <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
+            <span data-bio-line className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
               001
             </span>
-            <span className="whitespace-nowrap">A creative director &nbsp;/</span>
-            <span>Photographer</span>
-            <span>
+            <span data-bio-line className="whitespace-nowrap">A creative director &nbsp;/</span>
+            <span data-bio-line>Photographer</span>
+            <span data-bio-line>
               Born{" "}
               <span className="font-playfair italic font-normal">&amp;</span>
               {" "}raised
             </span>
-            <span>on the south side</span>
-            <span>of chicago.</span>
-            <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
+            <span data-bio-line>on the south side</span>
+            <span data-bio-line>of chicago.</span>
+            <span data-bio-line className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f]">
               [ creative freelancer ]
             </span>
           </div>
@@ -139,7 +141,7 @@ export default function Home() {
             className="hidden md:flex flex-col gap-2 uppercase font-light tracking-[-0.08em] text-black leading-[0.84]"
             style={{ fontSize: "clamp(2.5rem, 6.67vw, 96px)" }}
           >
-            <div className="flex items-start gap-3">
+            <div data-bio-line className="flex items-start gap-3">
               <span className="whitespace-nowrap">
                 A creative director &nbsp;&nbsp;/
               </span>
@@ -147,20 +149,20 @@ export default function Home() {
                 001
               </span>
             </div>
-            <div className="pl-[15.5%]">
+            <div data-bio-line className="pl-[15.5%]">
               <span>Photographer</span>
             </div>
-            <div className="pl-[44.3%]">
+            <div data-bio-line className="pl-[44.3%]">
               <span>
                 Born{" "}
                 <span className="font-playfair italic font-normal">&amp;</span>
                 {" "}raised
               </span>
             </div>
-            <div>
+            <div data-bio-line>
               <span>on the south side</span>
             </div>
-            <div className="relative pl-[44%]">
+            <div data-bio-line className="relative pl-[44%]">
               <span>of chicago.</span>
               <span className="font-mono text-sm tracking-normal font-normal leading-[1.1] text-[#1f1f1f] absolute right-0 top-[26px] whitespace-nowrap">
                 [ creative freelancer ]
@@ -170,7 +172,7 @@ export default function Home() {
         </div>
       </section>
       {/* About Section */}
-      <section className="w-full overflow-clip px-4 md:px-8 py-12 md:py-20">
+      <section data-about className="w-full overflow-clip px-4 md:px-8 py-12 md:py-20">
         <div className="flex flex-col md:flex-row items-start justify-between gap-5 md:gap-8">
           {/* Labels — on mobile: stacked 002 + [ About ]; on desktop: just [ About ] */}
           <div className="flex flex-col gap-2 shrink-0">
@@ -185,7 +187,7 @@ export default function Home() {
           {/* Content area */}
           <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-end w-full md:w-[983px]">
             {/* Text with bracket decorations */}
-            <div className="flex-1 flex items-stretch gap-3">
+            <div data-about-text className="flex-1 flex items-stretch gap-3">
               {/* Left brackets */}
               <div className="flex flex-col justify-between w-6 shrink-0 text-[#1f1f1f]">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -218,7 +220,7 @@ export default function Home() {
             </div>
 
             {/* Image + 002 label */}
-            <div className="flex gap-6 items-start shrink-0 w-full md:w-auto">
+            <div data-about-image className="flex gap-6 items-start shrink-0 w-full md:w-auto">
               <span className="hidden md:block font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1]">
                 002
               </span>
@@ -248,13 +250,14 @@ export default function Home() {
         </div>
       </section>
       {/* Services / Deliverables Section */}
-      <section className="w-full bg-black text-white overflow-clip px-4 md:px-8 py-16 md:py-20">
+      <section data-services className="w-full bg-black text-white overflow-clip px-4 md:px-8 py-16 md:py-20">
         <div className="flex flex-col gap-10 md:gap-12">
           {/* Header */}
-          <span className="font-mono text-sm uppercase leading-[1.1]">
+          <span data-services-header className="font-mono text-sm uppercase leading-[1.1]">
             [ services ]
           </span>
           <div
+            data-services-header
             className="flex items-center justify-between uppercase font-light tracking-[-0.08em] leading-normal"
             style={{ fontSize: "clamp(2rem, 6.67vw, 96px)" }}
           >
@@ -270,7 +273,7 @@ export default function Home() {
               { num: 3, title: "Marketing", image: "/pictures/marketing.jpg" },
               { num: 4, title: "Photography", image: "/pictures/photography.jpg" },
             ].map((service) => (
-              <div key={service.num} className="flex flex-col gap-2">
+              <div key={service.num} data-service-item className="flex flex-col gap-2">
                 {/* Number + divider */}
                 <span className="font-mono text-sm uppercase leading-[1.1]">
                   [ {service.num} ]
@@ -308,10 +311,10 @@ export default function Home() {
         </div>
       </section>
       {/* Selected Work Section */}
-      <section className="w-full overflow-clip px-4 md:px-8 py-16 md:py-20">
+      <section data-portfolio className="w-full overflow-clip px-4 md:px-8 py-16 md:py-20">
         <div className="flex flex-col gap-10 md:gap-[61px]">
           {/* Header */}
-          <div className="flex items-center justify-between">
+          <div data-portfolio-header className="flex items-center justify-between">
             <div className="flex gap-2 md:gap-[10px] items-start uppercase">
               {/* Mobile: portfolio label above */}
               <div className="flex flex-col gap-2 md:hidden">
@@ -355,10 +358,10 @@ export default function Home() {
           {/* Mobile: single column */}
           <div className="md:hidden flex flex-col gap-8">
             {[
-              { title: "Surfers Paradise", image: "/pictures/surfers-paradise.jpg", tags: ["Social Media", "Photography"] },
-              { title: "Cyberpunk Caffe", image: "/pictures/cyberpunk-cafe.jpg", tags: ["Social Media", "Photography"] },
-              { title: "Agency 976", image: "/pictures/agency-976.jpg", tags: ["Social Media", "Photography"] },
-              { title: "Minimal Playground", image: "/pictures/minimal-playground.jpg", tags: ["Social Media", "Photography"] },
+              { title: "Surfers Paradise", image: "/pictures/Page 1/Frame 3763.jpg", tags: ["Social Media", "Photography"] },
+              { title: "Cyberpunk Caffe", image: "/pictures/Page 1/Frame 3763_2.jpg", tags: ["Social Media", "Photography"] },
+              { title: "Agency 976", image: "/pictures/Page 1/Frame 3763_3.jpg", tags: ["Social Media", "Photography"] },
+              { title: "Minimal Playground", image: "/pictures/Page 1/Frame 3763_4.jpg", tags: ["Social Media", "Photography"] },
             ].map((project) => (
               <div key={project.title} className="flex flex-col gap-2">
                 <div className="relative w-full aspect-[3/4]">
@@ -418,13 +421,13 @@ export default function Home() {
             {/* Left column */}
             <div className="flex-1 flex flex-col justify-between">
               {/* Project 1: Surfers Paradise */}
-              <div className="flex flex-col gap-[10px]">
+              <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[744px]">
                   <Image
-                    src="/pictures/surfers-paradise.jpg"
+                    src="/pictures/Page 1/Frame 3763.jpg"
                     alt="Surfers Paradise"
                     fill
-                    className="object-cover"
+                    className="object-cover object-left"
                     sizes="50vw"
                   />
                   <div className="absolute bottom-4 left-4 flex gap-3">
@@ -441,10 +444,10 @@ export default function Home() {
               </div>
 
               {/* Project 2: Cyberpunk Caffe */}
-              <div className="flex flex-col gap-[10px]">
+              <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[699px]">
                   <Image
-                    src="/pictures/cyberpunk-cafe.jpg"
+                    src="/pictures/Page 1/Frame 3763_2.jpg"
                     alt="Cyberpunk Caffe"
                     fill
                     className="object-cover"
@@ -488,10 +491,10 @@ export default function Home() {
             {/* Right column — offset down */}
             <div className="flex-1 flex flex-col gap-[117px] pt-[240px]">
               {/* Project 3: Agency 976 */}
-              <div className="flex flex-col gap-[10px]">
+              <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[699px]">
                   <Image
-                    src="/pictures/agency-976.jpg"
+                    src="/pictures/Page 1/Frame 3763_3.jpg"
                     alt="Agency 976"
                     fill
                     className="object-cover"
@@ -511,10 +514,10 @@ export default function Home() {
               </div>
 
               {/* Project 4: Minimal Playground */}
-              <div className="flex flex-col gap-[10px]">
+              <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[744px]">
                   <Image
-                    src="/pictures/minimal-playground.jpg"
+                    src="/pictures/Page 1/Frame 3763_4.jpg"
                     alt="Minimal Playground"
                     fill
                     className="object-cover"
@@ -538,8 +541,9 @@ export default function Home() {
       </section>
       {/* Testimonials Section */}
       {/* Mobile: title + scattered overlapping cards */}
-      <section className="md:hidden w-full py-16 overflow-clip">
+      <section data-testimonials className="md:hidden w-full py-16 overflow-clip">
         <h2
+          data-testimonials-title
           className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-black px-4 mb-6"
           style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
         >
@@ -574,9 +578,10 @@ export default function Home() {
       </section>
 
       {/* Desktop: scattered cards around large title */}
-      <section className="hidden md:block w-full overflow-clip px-8 py-[120px]">
+      <section data-testimonials className="hidden md:block w-full overflow-clip px-8 py-[120px]">
         <div className="relative h-[987px] flex items-center justify-center">
           <h2
+            data-testimonials-title
             className="relative z-10 font-medium capitalize text-center leading-[1.1] tracking-[-0.07em] text-black pointer-events-none"
             style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
           >
@@ -584,7 +589,7 @@ export default function Home() {
           </h2>
 
           {/* Card 1 — Marko (top-left) */}
-          <div className="absolute left-[7%] top-[14%] rotate-[-6.85deg]">
+          <div data-testimonial-card className="absolute left-[7%] top-[14%] rotate-[-6.85deg]">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-1.svg" alt="Logo" width={143} height={19} className="h-[19px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
@@ -598,7 +603,7 @@ export default function Home() {
           </div>
 
           {/* Card 2 — Lukas (center-right, behind title) */}
-          <div className="absolute left-[47%] top-[27%] rotate-[2.9deg]">
+          <div data-testimonial-card className="absolute left-[47%] top-[27%] rotate-[2.9deg]">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-2.svg" alt="Logo" width={138} height={19} className="h-[19px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
@@ -610,7 +615,7 @@ export default function Home() {
           </div>
 
           {/* Card 3 — Sarah (bottom-left) */}
-          <div className="absolute left-[21%] top-[56%] rotate-[2.23deg]">
+          <div data-testimonial-card className="absolute left-[21%] top-[56%] rotate-[2.23deg]">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-3.svg" alt="Logo" width={109} height={31} className="h-[31px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
@@ -624,7 +629,7 @@ export default function Home() {
           </div>
 
           {/* Card 4 — Sofia (bottom-right) */}
-          <div className="absolute left-[68.5%] top-[55%] rotate-[-4.15deg]">
+          <div data-testimonial-card className="absolute left-[68.5%] top-[55%] rotate-[-4.15deg]">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-4.svg" alt="Logo" width={81} height={36} className="h-[36px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
@@ -637,7 +642,7 @@ export default function Home() {
         </div>
       </section>
       {/* News Section */}
-      <section className="w-full bg-[#f3f3f3] overflow-clip px-4 md:px-8 py-16 md:py-[120px]">
+      <section data-news className="w-full bg-[#f3f3f3] overflow-clip px-4 md:px-8 py-16 md:py-[120px]">
         {/* Mobile: horizontal title + scroll */}
         <div className="md:hidden">
           <h2 className="text-2xl font-bold uppercase tracking-[-0.04em] leading-[1.1] mb-6">
@@ -686,7 +691,7 @@ export default function Home() {
               { image: "/pictures/keepup-2.jpg", offset: true },
               { image: "/pictures/keepup-3.jpg", offset: false },
             ].map((article, i) => (
-              <div key={i} className="flex items-start">
+              <div key={i} data-news-card className="flex items-start">
                 {/* Divider line between cards */}
                 {i > 0 && (
                   <div className="w-px self-stretch bg-[#1f1f1f]/20 mx-4 shrink-0" />
@@ -712,10 +717,10 @@ export default function Home() {
         </div>
       </section>
       {/* Footer */}
-      <footer className="w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
+      <footer data-footer className="w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
         <div className="flex flex-col gap-12 md:gap-[120px]">
           {/* Top area */}
-          <div className="flex flex-col gap-8 md:gap-12">
+          <div data-footer-content className="flex flex-col gap-8 md:gap-12">
             {/* CTA + Social links */}
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
               {/* Have a project? */}
@@ -753,7 +758,7 @@ export default function Home() {
           {/* Bottom area */}
           <div className="flex flex-col-reverse md:flex-row items-start md:items-end justify-between gap-8">
             {/* Large H.Studio wordmark */}
-            <div className="relative h-[140px] md:h-[219px] w-full md:w-[1093px] overflow-clip">
+            <div data-footer-wordmark className="relative h-[140px] md:h-[219px] w-full md:w-[1093px] overflow-clip">
               <div className="absolute left-0 top-1/2 -translate-y-[45%]">
                 <span
                   className="font-semibold capitalize leading-[0.8] tracking-[-0.06em] text-white whitespace-nowrap"

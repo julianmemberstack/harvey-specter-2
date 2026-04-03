@@ -1,0 +1,215 @@
+"use client";
+
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function ScrollAnimations() {
+  useEffect(() => {
+    const cleanups: (() => void)[] = [];
+
+    const ctx = gsap.context(() => {
+      // Hero name uses CSS animation to preserve mix-blend-overlay
+      gsap.from("[data-hero-desc]", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.6,
+      });
+      gsap.from("[data-hero-nav]", {
+        y: -20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.1,
+      });
+
+      // Bio — each line staggers in
+      gsap.from("[data-bio-line]", {
+        scrollTrigger: {
+          trigger: "[data-bio]",
+          start: "top 80%",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: "power3.out",
+      });
+
+      // About — text fades from left, image from right
+      gsap.from("[data-about-text]", {
+        scrollTrigger: {
+          trigger: "[data-about]",
+          start: "top 75%",
+        },
+        x: -40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+      gsap.from("[data-about-image]", {
+        scrollTrigger: {
+          trigger: "[data-about]",
+          start: "top 75%",
+        },
+        x: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.2,
+      });
+
+      // Full-width photo — no animation (parallax breaks with object-cover)
+
+      // Services — each item slides up
+      gsap.from("[data-service-item]", {
+        scrollTrigger: {
+          trigger: "[data-services]",
+          start: "top 75%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power2.out",
+      });
+
+      // Services header
+      gsap.from("[data-services-header]", {
+        scrollTrigger: {
+          trigger: "[data-services]",
+          start: "top 80%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      });
+
+      // Portfolio — images scale in subtly
+      gsap.from("[data-portfolio-item]", {
+        scrollTrigger: {
+          trigger: "[data-portfolio]",
+          start: "top 70%",
+        },
+        scale: 0.95,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+      });
+
+      // Portfolio header
+      gsap.from("[data-portfolio-header]", {
+        scrollTrigger: {
+          trigger: "[data-portfolio]",
+          start: "top 80%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      });
+
+      // Testimonials — cards drift in with slight rotation
+      gsap.from("[data-testimonial-card]", {
+        scrollTrigger: {
+          trigger: "[data-testimonials]",
+          start: "top 75%",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power2.out",
+      });
+
+      // Testimonials title
+      gsap.from("[data-testimonials-title]", {
+        scrollTrigger: {
+          trigger: "[data-testimonials]",
+          start: "top 80%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+
+      // News — cards slide up staggered
+      gsap.from("[data-news-card]", {
+        scrollTrigger: {
+          trigger: "[data-news]",
+          start: "top 75%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power2.out",
+      });
+
+      // Footer — fade in
+      gsap.from("[data-footer-content]", {
+        scrollTrigger: {
+          trigger: "[data-footer]",
+          start: "top 85%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+      gsap.from("[data-footer-wordmark]", {
+        scrollTrigger: {
+          trigger: "[data-footer]",
+          start: "top 70%",
+        },
+        x: -60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.2,
+      });
+      // Button hover — magnetic pull + scale
+      const buttons = document.querySelectorAll<HTMLButtonElement>("button");
+
+      buttons.forEach((btn) => {
+        const handleEnter = () => {
+          gsap.to(btn, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+        };
+
+        const handleMove = (e: MouseEvent) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.3, ease: "power2.out" });
+        };
+
+        const handleLeave = () => {
+          gsap.to(btn, { x: 0, y: 0, scale: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" });
+        };
+
+        btn.addEventListener("mouseenter", handleEnter);
+        btn.addEventListener("mousemove", handleMove);
+        btn.addEventListener("mouseleave", handleLeave);
+        cleanups.push(() => {
+          btn.removeEventListener("mouseenter", handleEnter);
+          btn.removeEventListener("mousemove", handleMove);
+          btn.removeEventListener("mouseleave", handleLeave);
+        });
+      });
+    });
+
+    return () => {
+      ctx.revert();
+      cleanups.forEach((fn) => fn());
+    };
+  }, []);
+
+  return null;
+}

@@ -20,3 +20,16 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes hero-reveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+[data-hero-name] {
+  animation: hero-reveal 1s cubic-bezier(0.33, 1, 0.68, 1) 0.2s both;
+}
