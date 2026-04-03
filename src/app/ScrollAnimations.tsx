@@ -67,19 +67,16 @@ export default function ScrollAnimations() {
         ease: "power3.out",
       });
 
-      // Bio — text fill scrub (gray to black)
-      const bioLines = document.querySelectorAll("[data-bio-fill] [data-bio-line]");
-      bioLines.forEach((line) => {
-        gsap.to(line, {
-          scrollTrigger: {
-            trigger: line,
-            start: "top 85%",
-            end: "top 40%",
-            scrub: true,
-          },
-          color: "#000",
-          ease: "none",
-        });
+      // Bio — text fill scrub (gray to black) on the whole block
+      gsap.to("[data-bio-fill]", {
+        scrollTrigger: {
+          trigger: "[data-bio-fill]",
+          start: "top 60%",
+          end: "bottom 40%",
+          scrub: true,
+        },
+        color: "#000",
+        ease: "none",
       });
 
       // About portrait — black curtain wipe reveal from right to left
