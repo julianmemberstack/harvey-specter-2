@@ -235,6 +235,18 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Full-width Photo Break */}
+      <section className="w-full max-w-[1440px]">
+        <div className="relative w-full aspect-[1440/900] md:aspect-[1440/900]">
+          <Image
+            src="/pictures/deliverables-large.jpg"
+            alt="Photographer with camera"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1440px) 100vw, 1440px"
+          />
+        </div>
+      </section>
     </main>
   );
 }
