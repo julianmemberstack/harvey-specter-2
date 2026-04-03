@@ -44,10 +44,9 @@ export default function Navbar() {
         );
     } else {
       tl.to(linksRef.current.children, {
-        y: -30,
         opacity: 0,
-        duration: 0.3,
-        stagger: 0.04,
+        duration: 0.25,
+        stagger: 0.03,
         ease: "power2.in",
       }).to(overlayRef.current, {
         clipPath: "circle(0% at calc(100% - 36px) 36px)",
@@ -59,22 +58,17 @@ export default function Navbar() {
 
   const mobileOverlay = (
     <>
-      {/* Mobile hamburger / close — portaled to escape overflow-clip */}
+      {/* Mobile close button — portaled to escape overflow-clip */}
       <button
-        className="md:hidden fixed top-6 right-5 z-50 flex flex-col justify-center items-center w-8 h-8"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden fixed top-6 right-5 z-50 w-8 h-8 flex items-center justify-center"
+        aria-label="Close menu"
+        onClick={() => setIsOpen(false)}
         style={{ display: isOpen ? "flex" : "none" }}
       >
-        <span
-          className="block w-full h-[2px] bg-white transition-all duration-300 ease-out origin-center"
-          style={{ transform: "translateY(4px) rotate(45deg)" }}
-        />
-        <span className="block w-full h-[2px] bg-white opacity-0" />
-        <span
-          className="block w-full h-[2px] bg-white transition-all duration-300 ease-out origin-center"
-          style={{ transform: "translateY(-4px) rotate(-45deg)" }}
-        />
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round">
+          <line x1="2" y1="2" x2="18" y2="18" />
+          <line x1="18" y1="2" x2="2" y2="18" />
+        </svg>
       </button>
 
       {/* Mobile fullscreen overlay */}
