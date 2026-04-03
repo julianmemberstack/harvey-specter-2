@@ -19,6 +19,18 @@ export default function Navbar() {
 
   useEffect(() => setMounted(true), []);
 
+  // Slide in on load
+  useEffect(() => {
+    if (!navRef.current) return;
+    gsap.from(navRef.current, {
+      y: -30,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      delay: 0.1,
+    });
+  }, []);
+
   // Detect dark sections under the nav
   useEffect(() => {
     const darkSections = document.querySelectorAll("[data-nav-dark]");
