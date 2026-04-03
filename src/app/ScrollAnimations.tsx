@@ -181,18 +181,18 @@ export default function ScrollAnimations() {
         ease: "power3.out",
       });
 
-      // Testimonials — parallax depth layers
+      // Testimonials — parallax depth + sequential highlight
       const testimonialsSection = document.querySelector("[data-testimonials].hidden");
       if (testimonialsSection) {
         const cards = testimonialsSection.querySelectorAll("[data-testimonial-card]");
-        const speeds = [120, -80, 100, -60]; // alternating directions + varying speeds
-        const rotations = [4, -3, -5, 6]; // subtle rotation shifts
+        const speeds = [120, -80, 100, -60];
+        const rotations = [4, -3, -5, 6];
 
         cards.forEach((card, i) => {
+          // Parallax movement
           gsap.fromTo(card, {
             y: speeds[i],
             rotation: (rotations[i] || 0) * -1,
-            opacity: 0,
           }, {
             scrollTrigger: {
               trigger: testimonialsSection,
@@ -202,24 +202,50 @@ export default function ScrollAnimations() {
             },
             y: speeds[i] * -1,
             rotation: rotations[i] || 0,
-            opacity: 1,
             ease: "none",
           });
+
+          // Sequential highlight: each card gets 25% of the scroll
+          const total = cards.length;
+          const startPct = i / total;       // 0, 0.25, 0.5, 0.75
+          const peakPct = startPct + 0.5 / total; // fade in over first half of its segment
+          const fadeOutStart = startPct + 0.5 / total;
+          const endPct = (i + 1) / total;   // 0.25, 0.5, 0.75, 1.0
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: testimonialsSection,
+              start: "top 40%",
+              end: "bottom 60%",
+              scrub: true,
+            },
+          });
+
+          // Start dimmed
+          gsap.set(card, { opacity: i === 0 ? 1 : 0.2 });
+
+          // Fade in at start of segment
+          tl.to(card, { opacity: 1, duration: peakPct - startPct, ease: "none" }, startPct);
+          // Fade out at end of segment (except last card stays lit)
+          if (i < total - 1) {
+            tl.to(card, { opacity: 0.2, duration: endPct - fadeOutStart, ease: "none" }, fadeOutStart);
+          }
         });
 
         // Title — slow opposing parallax
-        gsap.fromTo("[data-testimonials-title]", {
-          y: 60,
-        }, {
-          scrollTrigger: {
-            trigger: testimonialsSection,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.5,
-          },
-          y: -60,
-          ease: "none",
-        });
+        const titleEl = testimonialsSection.querySelector("[data-testimonials-title]");
+        if (titleEl) {
+          gsap.fromTo(titleEl, { y: 60 }, {
+            scrollTrigger: {
+              trigger: testimonialsSection,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.5,
+            },
+            y: -60,
+            ease: "none",
+          });
+        }
       }
 
       // News — cards slide up staggered
