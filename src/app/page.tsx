@@ -391,15 +391,25 @@ export default function Home() {
               </div>
             ))}
 
-            {/* CTA */}
-            <div className="flex flex-col gap-3 items-start">
-              <p className="text-sm italic leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
-                Discover how my creativity transforms ideas into impactful
-                digital experiences — schedule a call with me to get started.
-              </p>
-              <button className="bg-black text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap">
-                Let&apos;s talk
-              </button>
+            {/* CTA with brackets */}
+            <div className="flex items-stretch gap-3">
+              <div className="flex flex-col justify-between w-6 shrink-0 text-[#1f1f1f]">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 15V1H15" stroke="currentColor" strokeWidth="1.5" /></svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1V15H15" stroke="currentColor" strokeWidth="1.5" /></svg>
+              </div>
+              <div className="flex-1 flex flex-col gap-3 py-3">
+                <p className="text-sm italic leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                  Discover how my creativity transforms ideas into impactful
+                  digital experiences — schedule a call with me to get started.
+                </p>
+                <button className="bg-black text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap self-start">
+                  Let&apos;s talk
+                </button>
+              </div>
+              <div className="flex flex-col justify-between w-6 shrink-0 text-[#1f1f1f]">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 15V1H1" stroke="currentColor" strokeWidth="1.5" /></svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1V15H1" stroke="currentColor" strokeWidth="1.5" /></svg>
+              </div>
             </div>
           </div>
 
@@ -522,6 +532,94 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Testimonials Section */}
+      {/* Mobile: title + horizontal scroll */}
+      <section className="md:hidden w-full max-w-[1440px] py-16">
+        <h2
+          className="font-medium capitalize text-center leading-[1.1] tracking-[-0.07em] text-black px-4 mb-8"
+          style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
+        >
+          Testimonials
+        </h2>
+        <div className="flex gap-4 overflow-x-auto px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
+          {[
+            { logo: "/pictures/logo-1.svg", logoW: 143, logoH: 19, quote: "A brilliant creative partner who transformed our vision into a unique, high-impact brand identity. Their ability to craft everything from custom mascots to polished logos is truly impressive.", name: "Marko Stojković" },
+            { logo: "/pictures/logo-2.svg", logoW: 138, logoH: 19, quote: "Professional, precise, and incredibly fast at handling complex product visualizations and templates.", name: "Lukas Weber" },
+            { logo: "/pictures/logo-3.svg", logoW: 109, logoH: 31, quote: "A strategic partner who balances stunning aesthetics with high-performance UX for complex platforms. They don\u2019t just make things look good; they solve business problems through visual clarity.", name: "Sarah Jenkins" },
+            { logo: "/pictures/logo-4.svg", logoW: 81, logoH: 36, quote: "An incredibly versatile designer who delivers consistent quality across a wide range of styles and formats.", name: "Sofia Martínez" },
+          ].map((t) => (
+            <div key={t.name} className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-5 rounded-[4px] min-w-[280px] max-w-[300px] shrink-0 snap-start">
+              <Image src={t.logo} alt="Logo" width={t.logoW} height={t.logoH} className="h-5 w-auto" />
+              <p className="text-sm leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">{t.quote}</p>
+              <p className="text-sm font-black uppercase tracking-[-0.04em] leading-[1.1]">{t.name}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Desktop: scattered cards around large title */}
+      <section className="hidden md:block w-full max-w-[1440px] overflow-clip px-8 py-[120px]">
+        <div className="relative h-[987px] flex items-center justify-center">
+          <h2
+            className="font-medium capitalize text-center leading-[1.1] tracking-[-0.07em] text-black"
+            style={{ fontSize: "clamp(3.5rem, 13.75vw, 198px)" }}
+          >
+            Testimonials
+          </h2>
+
+          {/* Card 1 — Marko (top-left) */}
+          <div className="absolute left-[7%] top-[14%] rotate-[-6.85deg]">
+            <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
+              <Image src="/pictures/logo-1.svg" alt="Logo" width={143} height={19} className="h-[19px] w-auto" />
+              <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                A brilliant creative partner who transformed our vision into a
+                unique, high-impact brand identity. Their ability to craft
+                everything from custom mascots to polished logos is truly
+                impressive.
+              </p>
+              <p className="text-base font-black uppercase tracking-[-0.04em] leading-[1.1]">Marko Stojković</p>
+            </div>
+          </div>
+
+          {/* Card 2 — Lukas (center-right, behind title) */}
+          <div className="absolute left-[47%] top-[27%] rotate-[2.9deg] -z-10">
+            <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
+              <Image src="/pictures/logo-2.svg" alt="Logo" width={138} height={19} className="h-[19px] w-auto" />
+              <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                Professional, precise, and incredibly fast at handling complex
+                product visualizations and templates.
+              </p>
+              <p className="text-base font-black uppercase tracking-[-0.04em] leading-[1.1]">Lukas Weber</p>
+            </div>
+          </div>
+
+          {/* Card 3 — Sarah (bottom-left) */}
+          <div className="absolute left-[21%] top-[56%] rotate-[2.23deg]">
+            <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
+              <Image src="/pictures/logo-3.svg" alt="Logo" width={109} height={31} className="h-[31px] w-auto" />
+              <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                A strategic partner who balances stunning aesthetics with
+                high-performance UX for complex platforms. They don&apos;t just
+                make things look good; they solve business problems through
+                visual clarity.
+              </p>
+              <p className="text-base font-black uppercase tracking-[-0.04em] leading-[1.1]">Sarah Jenkins</p>
+            </div>
+          </div>
+
+          {/* Card 4 — Sofia (bottom-right) */}
+          <div className="absolute left-[68.5%] top-[55%] rotate-[-4.15deg]">
+            <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
+              <Image src="/pictures/logo-4.svg" alt="Logo" width={81} height={36} className="h-[36px] w-auto" />
+              <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                An incredibly versatile designer who delivers consistent quality
+                across a wide range of styles and formats.
+              </p>
+              <p className="text-base font-black uppercase tracking-[-0.04em] leading-[1.1]">Sofia Martínez</p>
             </div>
           </div>
         </div>
