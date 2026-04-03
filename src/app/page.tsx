@@ -9,16 +9,15 @@ export default function Home() {
       <Navbar />
       {/* Hero Section */}
       <section data-hero-section className="relative w-full min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
-        {/* Background Image — wider than container per Figma */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
           <Image
             data-hero-bg
             src="/pictures/hero-background-image.jpg"
             alt="Hero background"
-            width={2291}
-            height={1346}
-            className="absolute w-[170%] md:w-[170%] max-w-none left-1/2 -translate-x-1/2 top-[5%] md:top-[-7%]"
-            sizes="170vw"
+            fill
+            className="object-cover object-top"
+            sizes="100vw"
             priority
           />
         </div>
