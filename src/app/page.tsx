@@ -307,6 +307,225 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Selected Work Section */}
+      <section className="w-full max-w-[1440px] overflow-clip px-4 md:px-8 py-16 md:py-20">
+        <div className="flex flex-col gap-10 md:gap-[61px]">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div className="flex gap-2 md:gap-[10px] items-start uppercase">
+              {/* Mobile: portfolio label above */}
+              <div className="flex flex-col gap-2 md:hidden">
+                <span className="font-mono text-sm text-[#1f1f1f] leading-[1.1]">
+                  [ portfolio ]
+                </span>
+                <div className="flex gap-2 items-start">
+                  <h2
+                    className="font-light tracking-[-0.08em] leading-[0.86]"
+                    style={{ fontSize: "clamp(2.5rem, 6.67vw, 96px)" }}
+                  >
+                    Selected<br />Work
+                  </h2>
+                  <span className="font-mono text-sm text-[#1f1f1f] leading-[1.1] font-normal tracking-normal">
+                    004
+                  </span>
+                </div>
+              </div>
+              {/* Desktop header */}
+              <div className="hidden md:flex gap-[10px] items-start">
+                <h2
+                  className="font-light tracking-[-0.08em] leading-[0.86]"
+                  style={{ fontSize: "clamp(2.5rem, 6.67vw, 96px)" }}
+                >
+                  Selected<br />Work
+                </h2>
+                <span className="font-mono text-sm text-[#1f1f1f] leading-[1.1] font-normal tracking-normal">
+                  004
+                </span>
+              </div>
+            </div>
+            {/* Rotated portfolio label — desktop only */}
+            <div className="hidden md:flex h-[110px] items-center justify-center w-[15px]">
+              <span className="font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1] whitespace-nowrap -rotate-90">
+                [ portfolio ]
+              </span>
+            </div>
+          </div>
+
+          {/* Portfolio Grid */}
+          {/* Mobile: single column */}
+          <div className="md:hidden flex flex-col gap-8">
+            {[
+              { title: "Surfers Paradise", image: "/pictures/surfers-paradise.jpg", tags: ["Social Media", "Photography"] },
+              { title: "Cyberpunk Caffe", image: "/pictures/cyberpunk-cafe.jpg", tags: ["Social Media", "Photography"] },
+              { title: "Agency 976", image: "/pictures/agency-976.jpg", tags: ["Social Media", "Photography"] },
+              { title: "Minimal Playground", image: "/pictures/minimal-playground.jpg", tags: ["Social Media", "Photography"] },
+            ].map((project) => (
+              <div key={project.title} className="flex flex-col gap-2">
+                <div className="relative w-full aspect-[3/4]">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
+                  />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full whitespace-nowrap"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
+                    {project.title}
+                  </h3>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="-rotate-90">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+
+            {/* CTA */}
+            <div className="flex flex-col gap-3 items-start">
+              <p className="text-sm italic leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                Discover how my creativity transforms ideas into impactful
+                digital experiences — schedule a call with me to get started.
+              </p>
+              <button className="bg-black text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap">
+                Let&apos;s talk
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop: two-column masonry */}
+          <div className="hidden md:flex gap-6 items-end">
+            {/* Left column */}
+            <div className="flex-1 flex flex-col justify-between h-full gap-0">
+              {/* Project 1: Surfers Paradise */}
+              <div className="flex flex-col gap-[10px]">
+                <div className="relative w-full h-[744px]">
+                  <Image
+                    src="/pictures/surfers-paradise.jpg"
+                    alt="Surfers Paradise"
+                    fill
+                    className="object-cover"
+                    sizes="50vw"
+                  />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Surfers Paradise</h3>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="-rotate-90">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Project 2: Cyberpunk Caffe */}
+              <div className="flex flex-col gap-[10px]">
+                <div className="relative w-full h-[699px]">
+                  <Image
+                    src="/pictures/cyberpunk-cafe.jpg"
+                    alt="Cyberpunk Caffe"
+                    fill
+                    className="object-cover"
+                    sizes="50vw"
+                  />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Cyberpunk Caffe</h3>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="-rotate-90">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* CTA with brackets */}
+              <div className="w-[465px] flex items-stretch gap-3">
+                <div className="flex flex-col justify-between w-6 shrink-0 text-[#1f1f1f]">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 15V1H15" stroke="currentColor" strokeWidth="1.5" /></svg>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1V15H15" stroke="currentColor" strokeWidth="1.5" /></svg>
+                </div>
+                <div className="flex-1 flex flex-col gap-[10px] py-3">
+                  <p className="text-sm italic leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
+                    Discover how my creativity transforms ideas into impactful
+                    digital experiences — schedule a call with me to get started.
+                  </p>
+                  <button className="bg-black text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap self-start">
+                    Let&apos;s talk
+                  </button>
+                </div>
+                <div className="flex flex-col justify-between w-6 shrink-0 text-[#1f1f1f]">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 15V1H1" stroke="currentColor" strokeWidth="1.5" /></svg>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1V15H1" stroke="currentColor" strokeWidth="1.5" /></svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Right column — offset down */}
+            <div className="flex-1 flex flex-col gap-[117px] pt-[240px]">
+              {/* Project 3: Agency 976 */}
+              <div className="flex flex-col gap-[10px]">
+                <div className="relative w-full h-[699px]">
+                  <Image
+                    src="/pictures/agency-976.jpg"
+                    alt="Agency 976"
+                    fill
+                    className="object-cover"
+                    sizes="50vw"
+                  />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Agency 976</h3>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="-rotate-90">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Project 4: Minimal Playground */}
+              <div className="flex flex-col gap-[10px]">
+                <div className="relative w-full h-[744px]">
+                  <Image
+                    src="/pictures/minimal-playground.jpg"
+                    alt="Minimal Playground"
+                    fill
+                    className="object-cover"
+                    sizes="50vw"
+                  />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
+                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">Minimal Playground</h3>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="-rotate-90">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
