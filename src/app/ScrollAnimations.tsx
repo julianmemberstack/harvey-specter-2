@@ -213,8 +213,8 @@ export default function ScrollAnimations() {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: testimonialsSection,
-              start: "top 40%",
-              end: "bottom 60%",
+              start: "top 80%",
+              end: "center 40%",
               scrub: true,
             },
           });

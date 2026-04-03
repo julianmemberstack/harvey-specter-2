@@ -72,23 +72,28 @@ export default function LiquidImage({
 
   return (
     <div
-      ref={containerRef}
-      className={`relative overflow-hidden cursor-pointer ${className}`}
-      style={{ transformStyle: "preserve-3d" }}
+      className={`relative ${className}`}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
+      style={{ padding: "20px", margin: "-20px" }}
     >
-      <div ref={imgRef} className="w-full h-full">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className={`object-cover ${objectPosition || ""}`}
-          sizes={sizes}
-        />
-      </div>
+      <div
+        ref={containerRef}
+        className="relative overflow-hidden cursor-pointer w-full h-full"
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        <div ref={imgRef} className="w-full h-full">
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className={`object-cover ${objectPosition || ""}`}
+            sizes={sizes}
+          />
+        </div>
 
-      {children}
+        {children}
+      </div>
     </div>
   );
 }
