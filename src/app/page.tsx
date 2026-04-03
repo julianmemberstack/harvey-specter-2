@@ -711,6 +711,73 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Footer */}
+      <footer className="w-full max-w-[1440px] bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
+        <div className="flex flex-col gap-12 md:gap-[120px]">
+          {/* Top area */}
+          <div className="flex flex-col gap-8 md:gap-12">
+            {/* CTA + Social links */}
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              {/* Have a project? */}
+              <div className="flex flex-col gap-3 w-full md:w-[298px]">
+                <p className="text-2xl uppercase tracking-[-0.04em] leading-[1.1] font-light italic">
+                  Have a <span className="font-black not-italic">project</span> in mind?
+                </p>
+                <button className="border border-white text-white text-sm font-medium tracking-[-0.04em] px-4 py-3 rounded-full whitespace-nowrap self-start">
+                  Let&apos;s talk
+                </button>
+              </div>
+
+              {/* Social links — mobile: stacked list, desktop: two columns */}
+              <div className="md:hidden flex flex-col gap-1 text-lg uppercase tracking-[-0.04em]">
+                <span>Facebook</span>
+                <span>Instagram</span>
+                <span>x.com</span>
+                <span>Linkedin</span>
+              </div>
+
+              <div className="hidden md:block text-lg text-center uppercase tracking-[-0.04em] leading-[1.1] w-[298px]">
+                <p>Facebook</p>
+                <p>Instagram</p>
+              </div>
+              <div className="hidden md:block text-lg text-right uppercase tracking-[-0.04em] leading-[1.1] w-[298px]">
+                <p>x.com</p>
+                <p>Linkedin</p>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-white/30" />
+          </div>
+
+          {/* Bottom area */}
+          <div className="flex flex-col-reverse md:flex-row items-start md:items-end justify-between gap-8">
+            {/* Large H.Studio wordmark */}
+            <div className="relative h-[140px] md:h-[219px] w-full md:w-[1093px] overflow-clip">
+              <div className="absolute left-0 top-1/2 -translate-y-[45%]">
+                <span
+                  className="font-semibold capitalize leading-[0.8] tracking-[-0.06em] text-white whitespace-nowrap"
+                  style={{ fontSize: "clamp(8rem, 20vw, 290px)" }}
+                >
+                  H.Studio
+                </span>
+              </div>
+              {/* Coded By Claude — rotated label */}
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-[15px] h-[160px]">
+                <span className="font-mono text-sm uppercase text-white leading-[1.1] whitespace-nowrap -rotate-90">
+                  [ Coded By Claude ]
+                </span>
+              </div>
+            </div>
+
+            {/* Legal links */}
+            <div className="flex gap-8 items-center pb-4 md:pb-8 text-xs uppercase tracking-[-0.04em] text-white">
+              <span className="underline">Licences</span>
+              <span className="underline">Privacy policy</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
