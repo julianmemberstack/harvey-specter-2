@@ -164,7 +164,7 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-8 py-6 transition-colors duration-300 ${textColor}`}
+        className={`fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 md:px-8 py-6 mx-auto max-w-[1660px] transition-colors duration-300 ${textColor}`}
       >
         <span className={`text-base font-semibold tracking-[-0.04em] capitalize transition-opacity duration-300 ${isOpen ? "opacity-0" : "opacity-100"}`}>
           H.Studio

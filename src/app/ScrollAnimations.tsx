@@ -62,27 +62,19 @@ export default function ScrollAnimations() {
         });
       });
 
-      // About portrait — black curtain wipe reveal from right to left
+      // About portrait — black overlay slides away to reveal image
       const darkContainer = document.querySelector("[data-img-reveal-dark]");
-      const darkImg = document.querySelector("[data-img-reveal-dark-img]");
-      if (darkContainer && darkImg) {
-        gsap.set(darkImg, { scale: 1.3, opacity: 0 });
-
+      const darkOverlay = document.querySelector("[data-img-reveal-dark-overlay]");
+      if (darkContainer && darkOverlay) {
         gsap.timeline({
           scrollTrigger: {
             trigger: darkContainer,
             start: "top 75%",
-            toggleActions: "play none none none",
+            end: "top 25%",
+            scrub: true,
           },
         })
-          .to(darkImg, { opacity: 1, duration: 0.1 })
-          .fromTo(
-            darkContainer,
-            { clipPath: "inset(0 0 0 100%)" },
-            { clipPath: "inset(0 0 0 0%)", duration: 1.2, ease: "power3.inOut" },
-            "<"
-          )
-          .to(darkImg, { scale: 1, duration: 1.2, ease: "power2.out" }, "-=0.8");
+          .to(darkOverlay, { xPercent: -100, duration: 1, ease: "none" });
       }
 
       // About — text fades from left, image from right
@@ -230,41 +222,24 @@ export default function ScrollAnimations() {
         }
       }
 
-      // News — cards slide up staggered
-      gsap.from("[data-news-card]", {
-        scrollTrigger: {
-          trigger: "[data-news]",
-          start: "top 75%",
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: "power2.out",
-      });
+      // News — parallax drift left to reveal all cards
+      const newsCards = document.querySelector("[data-news-cards]");
+      if (newsCards) {
+        gsap.fromTo(newsCards,
+          { x: 200 },
+          {
+            x: -100,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "[data-news]",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          }
+        );
+      }
 
-      // Footer — fade in
-      gsap.from("[data-footer-content]", {
-        scrollTrigger: {
-          trigger: "[data-footer]",
-          start: "top 85%",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      });
-      gsap.from("[data-footer-wordmark]", {
-        scrollTrigger: {
-          trigger: "[data-footer]",
-          start: "top 70%",
-        },
-        x: -60,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        delay: 0.2,
-      });
       // Button hover — magnetic pull + scale
       const buttons = document.querySelectorAll<HTMLButtonElement>("button");
 

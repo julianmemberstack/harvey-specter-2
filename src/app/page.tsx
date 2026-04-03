@@ -7,8 +7,9 @@ export default function Home() {
     <main className="bg-[#fafafa] flex flex-col items-center max-w-[1660px] mx-auto">
       <ScrollAnimations />
       <Navbar />
+      <div className="relative z-10 w-full bg-[#fafafa] flex flex-col items-center">
       {/* Hero Section */}
-      <section data-hero-section className="relative w-full h-[100svh] overflow-clip flex flex-col">
+      <section data-hero-section className="relative w-full h-[100svh] max-h-[900px] overflow-clip flex flex-col">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -69,7 +70,7 @@ export default function Home() {
                   </p>
                   <h1
                     className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white whitespace-nowrap"
-                    style={{ fontSize: "clamp(3.5rem, 14vw, 280px)" }}
+                    style={{ fontSize: "clamp(3.5rem, 14vw, 180px)" }}
                   >
                     Harvey
                   </h1>
@@ -77,7 +78,7 @@ export default function Home() {
                 <h1
                   data-hero-specter
                   className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-white mix-blend-overlay whitespace-nowrap"
-                  style={{ fontSize: "clamp(3.5rem, 14vw, 280px)" }}
+                  style={{ fontSize: "clamp(3.5rem, 14vw, 180px)" }}
                 >
                   Specter
                 </h1>
@@ -231,15 +232,17 @@ export default function Home() {
               <span className="hidden md:block font-mono text-sm uppercase text-[#1f1f1f] leading-[1.1]">
                 002
               </span>
-              <div data-img-reveal-dark className="relative w-full md:w-[436px] aspect-[422/594] overflow-clip bg-black">
-                <Image
-                  data-img-reveal-dark-img
-                  src="/pictures/about-portrait.jpg"
-                  alt="Portrait"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 436px"
-                />
+              <div data-img-reveal-dark className="relative w-full md:w-[436px] aspect-[422/594] overflow-clip">
+                <div className="absolute inset-[-4px]">
+                  <Image
+                    src="/pictures/about-portrait.jpg"
+                    alt="Portrait"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 436px"
+                  />
+                </div>
+                <div data-img-reveal-dark-overlay className="absolute -inset-[4px] bg-black" />
               </div>
             </div>
           </div>
@@ -308,7 +311,7 @@ export default function Home() {
                       you provide and the outcomes clients can expect. Keep it to
                       two or three sentences.
                     </p>
-                    <div className="relative w-full md:w-[151px] aspect-square md:aspect-square shrink-0">
+                    <div className="relative w-1/2 md:w-[151px] aspect-square md:aspect-square shrink-0">
                       <Image
                         src={service.image}
                         alt={service.title}
@@ -377,7 +380,7 @@ export default function Home() {
               { title: "Agency 976", image: "/pictures/Page 1/Frame 3763_3.jpg", tags: ["Social Media", "Photography"] },
               { title: "Minimal Playground", image: "/pictures/Page 1/Frame 3763_4.jpg", tags: ["Social Media", "Photography"] },
             ].map((project) => (
-              <div key={project.title} className="flex flex-col gap-2">
+              <a href="#" key={project.title} className="flex flex-col gap-2">
                 <div className="relative w-full aspect-[3/4]">
                   <Image
                     src={project.image}
@@ -405,7 +408,7 @@ export default function Home() {
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-              </div>
+              </a>
             ))}
 
             {/* CTA with brackets */}
@@ -435,44 +438,44 @@ export default function Home() {
             {/* Left column */}
             <div className="flex-1 flex flex-col justify-between">
               {/* Project 1: Surfers Paradise */}
-              <div data-portfolio-item className="flex flex-col gap-[10px]">
-                <div className="relative w-full h-[744px]">
-                  <Image src="/pictures/Page 1/Frame 3763.jpg" alt="Surfers Paradise" fill className="object-cover object-left" sizes="50vw" />
+              <a href="#" data-portfolio-item className="group flex flex-col gap-[10px]">
+                <div className="relative w-full h-[744px] overflow-hidden">
+                  <Image src="/pictures/Page 1/Frame 3763.jpg" alt="Surfers Paradise" fill className="object-cover object-left transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
                   <div className="absolute bottom-4 left-4 flex gap-3">
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
                   </div>
                 </div>
-                <a href="#" className="group flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
                     Surfers Paradise
                     <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
                   </h3>
-                  <svg className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </a>
-              </div>
+                </div>
+              </a>
 
               {/* Project 2: Cyberpunk Caffe */}
-              <div data-portfolio-item className="flex flex-col gap-[10px]">
-                <div className="relative w-full h-[699px]">
-                  <Image src="/pictures/Page 1/Frame 3763_2.jpg" alt="Cyberpunk Caffe" fill className="object-cover" sizes="50vw" />
+              <a href="#" data-portfolio-item className="group flex flex-col gap-[10px]">
+                <div className="relative w-full h-[699px] overflow-hidden">
+                  <Image src="/pictures/Page 1/Frame 3763_2.jpg" alt="Cyberpunk Caffe" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
                   <div className="absolute bottom-4 left-4 flex gap-3">
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
                   </div>
                 </div>
-                <a href="#" className="group flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
                     Cyberpunk Caffe
                     <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
                   </h3>
-                  <svg className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </a>
-              </div>
+                </div>
+              </a>
 
               {/* CTA with brackets */}
               <div className="w-[465px] flex items-stretch gap-3">
@@ -499,44 +502,44 @@ export default function Home() {
             {/* Right column — offset down */}
             <div data-portfolio-right className="flex-1 flex flex-col gap-[117px] pt-[240px]">
               {/* Project 3: Agency 976 */}
-              <div data-portfolio-item className="flex flex-col gap-[10px]">
-                <div className="relative w-full h-[699px]">
-                  <Image src="/pictures/Page 1/Frame 3763_3.jpg" alt="Agency 976" fill className="object-cover" sizes="50vw" />
+              <a href="#" data-portfolio-item className="group flex flex-col gap-[10px]">
+                <div className="relative w-full h-[699px] overflow-hidden">
+                  <Image src="/pictures/Page 1/Frame 3763_3.jpg" alt="Agency 976" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
                   <div className="absolute bottom-4 left-4 flex gap-3">
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
                   </div>
                 </div>
-                <a href="#" className="group flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
                     Agency 976
                     <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
                   </h3>
-                  <svg className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </a>
-              </div>
+                </div>
+              </a>
 
               {/* Project 4: Minimal Playground */}
-              <div data-portfolio-item className="flex flex-col gap-[10px]">
-                <div className="relative w-full h-[744px]">
-                  <Image src="/pictures/Page 1/Frame 3763_4.jpg" alt="Minimal Playground" fill className="object-cover" sizes="50vw" />
+              <a href="#" data-portfolio-item className="group flex flex-col gap-[10px]">
+                <div className="relative w-full h-[744px] overflow-hidden">
+                  <Image src="/pictures/Page 1/Frame 3763_4.jpg" alt="Minimal Playground" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
                   <div className="absolute bottom-4 left-4 flex gap-3">
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
                   </div>
                 </div>
-                <a href="#" className="group flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
                     Minimal Playground
                     <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
                   </h3>
-                  <svg className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </a>
-              </div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -591,7 +594,7 @@ export default function Home() {
           </h2>
 
           {/* Card 1 — Marko (top-left) */}
-          <div data-testimonial-card className="absolute left-[7%] top-[14%] rotate-[-6.85deg]">
+          <div data-testimonial-card className="absolute left-[7%] top-[14%] rotate-[-6.85deg] z-20">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-1.svg" alt="Logo" width={143} height={19} className="h-[19px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
@@ -605,7 +608,7 @@ export default function Home() {
           </div>
 
           {/* Card 2 — Lukas (center-right, behind title) */}
-          <div data-testimonial-card className="absolute left-[47%] top-[27%] rotate-[2.9deg]">
+          <div data-testimonial-card className="absolute left-[47%] top-[27%] rotate-[2.9deg] z-0">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-2.svg" alt="Logo" width={138} height={19} className="h-[19px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
@@ -617,7 +620,7 @@ export default function Home() {
           </div>
 
           {/* Card 3 — Sarah (bottom-left) */}
-          <div data-testimonial-card className="absolute left-[21%] top-[56%] rotate-[2.23deg]">
+          <div data-testimonial-card className="absolute left-[21%] top-[56%] rotate-[2.23deg] z-20">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-3.svg" alt="Logo" width={109} height={31} className="h-[31px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
@@ -631,7 +634,7 @@ export default function Home() {
           </div>
 
           {/* Card 4 — Sofia (bottom-right) */}
-          <div data-testimonial-card className="absolute left-[68.5%] top-[55%] rotate-[-4.15deg]">
+          <div data-testimonial-card className="absolute left-[68.5%] top-[55%] rotate-[-4.15deg] z-20">
             <div className="bg-[#f1f1f1] border border-[#ddd] flex flex-col gap-4 items-start p-6 rounded-[4px] w-[353px]">
               <Image src="/pictures/logo-4.svg" alt="Logo" width={81} height={36} className="h-[36px] w-auto" />
               <p className="text-lg leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
@@ -687,39 +690,41 @@ export default function Home() {
           </div>
 
           {/* Article cards */}
-          <div className="flex gap-0 items-start w-[1020px]">
+          <div data-news-cards className="flex gap-0 items-start w-[1020px] bg-[#f3f3f3]">
             {[
               { image: "/pictures/keepup-1.jpg", offset: false },
               { image: "/pictures/keepup-2.jpg", offset: true },
               { image: "/pictures/keepup-3.jpg", offset: false },
             ].map((article, i) => (
-              <div key={i} data-news-card className="flex items-start">
+              <a href="#" key={i} data-news-card className="group flex items-start">
                 {/* Divider line between cards */}
                 {i > 0 && (
                   <div className="w-px self-stretch bg-[#1f1f1f]/20 mx-4 shrink-0" />
                 )}
                 <div className={`flex flex-col gap-4 w-[353px] shrink-0 ${article.offset ? "pt-[120px]" : "h-[581px]"}`}>
-                  <div className="relative w-full h-[469px] shrink-0">
-                    <Image src={article.image} alt="News" fill className="object-cover" sizes="353px" />
+                  <div className="relative w-full h-[469px] shrink-0 overflow-hidden">
+                    <Image src={article.image} alt="News" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" sizes="353px" />
                   </div>
                   <p className="flex-1 text-sm leading-[1.3] tracking-[-0.04em] text-[#1f1f1f]">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   </p>
-                  <div className="flex items-center gap-2 border-b border-black pb-1 self-start">
+                  <div className="flex items-center gap-2 pb-1 self-start relative">
                     <span className="text-sm font-medium tracking-[-0.04em]">Read more</span>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
+                    <span className="absolute left-0 -bottom-0 w-full h-[1.5px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
       </section>
-      {/* Footer */}
-      <footer data-footer data-nav-dark className="w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
+      </div>
+      {/* Footer — revealed from behind the page */}
+      <footer data-footer data-nav-dark className="sticky bottom-0 w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
         <div className="flex flex-col gap-12 md:gap-[120px]">
           {/* Top area */}
           <div data-footer-content className="flex flex-col gap-8 md:gap-12">
@@ -760,20 +765,26 @@ export default function Home() {
           {/* Bottom area */}
           <div className="flex flex-col-reverse md:flex-row items-start md:items-end justify-between gap-8">
             {/* Large H.Studio wordmark */}
-            <div data-footer-wordmark className="relative h-[140px] md:h-[219px] w-full md:w-[1093px] overflow-clip">
-              <div className="absolute left-0 top-1/2 -translate-y-[45%]">
-                <span
-                  className="font-semibold capitalize leading-[0.8] tracking-[-0.06em] text-white whitespace-nowrap"
-                  style={{ fontSize: "clamp(8rem, 20vw, 290px)" }}
-                >
-                  H.Studio
-                </span>
-              </div>
-              {/* Coded By Claude — rotated label */}
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-[15px] h-[160px]">
-                <span className="font-mono text-sm uppercase text-white leading-[1.1] whitespace-nowrap -rotate-90">
-                  [ Coded By Claude ]
-                </span>
+            <div data-footer-wordmark className="flex flex-col gap-2 w-full md:w-[1093px]">
+              {/* Coded By Claude — horizontal on mobile, rotated on desktop */}
+              <span className="md:hidden font-mono text-sm uppercase text-white leading-[1.1] whitespace-nowrap">
+                [ Coded By Claude ]
+              </span>
+              <div className="relative h-[140px] md:h-[219px] overflow-clip">
+                <div className="absolute left-0 top-1/2 -translate-y-[45%]">
+                  <span
+                    className="font-semibold capitalize leading-[0.8] tracking-[-0.06em] text-white whitespace-nowrap"
+                    style={{ fontSize: "clamp(8rem, 20vw, 290px)" }}
+                  >
+                    H.Studio
+                  </span>
+                </div>
+                {/* Coded By Claude — rotated label, desktop only */}
+                <div className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 items-center justify-center w-[15px] h-[160px]">
+                  <span className="font-mono text-sm uppercase text-white leading-[1.1] whitespace-nowrap -rotate-90">
+                    [ Coded By Claude ]
+                  </span>
+                </div>
               </div>
             </div>
 
