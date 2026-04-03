@@ -15,7 +15,6 @@ export default function ScrollAnimations() {
       // Hero scroll parallax — text splits, image grows
       const heroSection = document.querySelector("[data-hero-section]");
       if (heroSection) {
-        gsap.set("[data-hero-bg]", { scale: 1.3 });
         gsap.to("[data-hero-bg]", {
           scrollTrigger: {
             trigger: heroSection,
@@ -48,13 +47,6 @@ export default function ScrollAnimations() {
         });
       }
 
-      gsap.from("[data-hero-desc]", {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        delay: 0.1,
-      });
       // Bio — text fill scrub per line (gray to black)
       const bioFillLines = document.querySelectorAll("[data-bio-fill] [data-bio-line]");
       bioFillLines.forEach((line) => {

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ScrollAnimations from "./ScrollAnimations";
 import Navbar from "./Navbar";
+import LiquidImage from "./LiquidImage";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       <ScrollAnimations />
       <Navbar />
       {/* Hero Section */}
-      <section data-hero-section className="relative w-full min-h-[100svh] md:min-h-0 md:h-[847px] overflow-clip flex flex-col">
+      <section data-hero-section className="relative w-full h-[100svh] overflow-clip flex flex-col">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -16,7 +17,7 @@ export default function Home() {
             src="/pictures/hero-background-image.jpg"
             alt="Hero background"
             fill
-            className="object-cover object-top md:object-[center_top] object-[60%_top]"
+            className="object-cover object-top md:object-[center_top] object-[60%_top] scale-[1.3]"
             sizes="200vw"
             priority
           />
@@ -437,14 +438,13 @@ export default function Home() {
               {/* Project 1: Surfers Paradise */}
               <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[744px]">
-                  <Image
+                  <LiquidImage
                     src="/pictures/Page 1/Frame 3763.jpg"
                     alt="Surfers Paradise"
-                    fill
-                    className="object-cover object-left"
-                    sizes="50vw"
+                    className="w-full h-full"
+                    objectPosition="object-left"
                   />
-                  <div className="absolute bottom-4 left-4 flex gap-3">
+                  <div className="absolute bottom-4 left-4 flex gap-3 z-10">
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
                   </div>
@@ -460,14 +460,12 @@ export default function Home() {
               {/* Project 2: Cyberpunk Caffe */}
               <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[699px]">
-                  <Image
+                  <LiquidImage
                     src="/pictures/Page 1/Frame 3763_2.jpg"
                     alt="Cyberpunk Caffe"
-                    fill
-                    className="object-cover"
-                    sizes="50vw"
+                    className="w-full h-full"
                   />
-                  <div className="absolute bottom-4 left-4 flex gap-3">
+                  <div className="absolute bottom-4 left-4 flex gap-3 z-10">
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
                   </div>
@@ -507,14 +505,12 @@ export default function Home() {
               {/* Project 3: Agency 976 */}
               <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[699px]">
-                  <Image
+                  <LiquidImage
                     src="/pictures/Page 1/Frame 3763_3.jpg"
                     alt="Agency 976"
-                    fill
-                    className="object-cover"
-                    sizes="50vw"
+                    className="w-full h-full"
                   />
-                  <div className="absolute bottom-4 left-4 flex gap-3">
+                  <div className="absolute bottom-4 left-4 flex gap-3 z-10">
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
                   </div>
@@ -530,14 +526,12 @@ export default function Home() {
               {/* Project 4: Minimal Playground */}
               <div data-portfolio-item className="flex flex-col gap-[10px]">
                 <div className="relative w-full h-[744px]">
-                  <Image
+                  <LiquidImage
                     src="/pictures/Page 1/Frame 3763_4.jpg"
                     alt="Minimal Playground"
-                    fill
-                    className="object-cover"
-                    sizes="50vw"
+                    className="w-full h-full"
                   />
-                  <div className="absolute bottom-4 left-4 flex gap-3">
+                  <div className="absolute bottom-4 left-4 flex gap-3 z-10">
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
                     <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
                   </div>
