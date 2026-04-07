@@ -4,12 +4,15 @@ import Navbar from "./Navbar";
 
 export default function Home() {
   return (
-    <main className="bg-[#fafafa] flex flex-col items-center max-w-[1660px] mx-auto">
+    <main className="w-full bg-[#fafafa] flex flex-col items-center">
       <ScrollAnimations />
       <Navbar />
       <div className="relative z-10 w-full bg-[#fafafa] flex flex-col items-center">
       {/* Hero Section */}
-      <section data-hero-section className="relative w-full h-[100svh] max-h-[900px] overflow-clip flex flex-col">
+      <section
+        data-hero-section
+        className="relative w-screen max-w-none min-h-[100svh] ml-[calc(50%-50vw)] overflow-clip flex flex-col"
+      >
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -17,8 +20,8 @@ export default function Home() {
             src="/pictures/hero-background-image.jpg"
             alt="Hero background"
             fill
-            className="object-cover object-top md:object-[center_top] object-[60%_top] scale-[1.3]"
-            sizes="200vw"
+            className="object-cover object-[center_top] scale-[1.3]"
+            sizes="100vw"
             priority
           />
         </div>
@@ -37,7 +40,7 @@ export default function Home() {
         <div className="h-[72px]" />
 
         {/* Hero Content — pushed to bottom */}
-        <div className="relative w-full mt-auto px-5 md:px-8 pb-8 md:pb-12">
+        <div className="relative w-full max-w-[1660px] mx-auto mt-auto px-5 md:px-8 pb-8 md:pb-12">
           {/* Name block — inline-block centers the text block, then hello aligns to its left edge */}
           <div data-hero-name className="w-full overflow-visible">
             {/* Mobile: stacked */}
@@ -111,6 +114,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <div className="w-full max-w-[1660px] mx-auto">
       {/* Bio Section */}
       <section data-bio className="w-full overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
         <div className="flex flex-col gap-6">
@@ -722,6 +726,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </div>
       </div>
       {/* Footer — revealed from behind the page */}
       <footer data-footer data-nav-dark className="sticky bottom-0 w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
