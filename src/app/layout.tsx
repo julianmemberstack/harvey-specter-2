@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import PageLoader from "./PageLoader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,7 +30,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${geistMono.variable} ${playfair.variable} antialiased`}>
       <body className="min-h-screen font-sans">
-        <PageLoader />
         {children}
       </body>
     </html>

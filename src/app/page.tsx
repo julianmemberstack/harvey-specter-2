@@ -1,10 +1,24 @@
 import Image from "next/image";
 import ScrollAnimations from "./ScrollAnimations";
 import Navbar from "./Navbar";
+import PageLoader from "./PageLoader";
+import { client } from "@/sanity/client";
+import { urlFor } from "@/sanity/image";
 
-export default function Home() {
+const PROJECTS_QUERY = `*[_type == "project"] | order(order asc) {
+  _id,
+  title,
+  slug,
+  image,
+  tags,
+  order
+}`;
+
+export default async function Home() {
+  const projects = await client.fetch(PROJECTS_QUERY);
   return (
     <main className="w-full bg-[#fafafa] flex flex-col items-center">
+      <PageLoader />
       <ScrollAnimations />
       <Navbar />
       <div className="relative z-10 w-full bg-[#fafafa] flex flex-col items-center">
@@ -114,9 +128,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="w-full max-w-[1660px] mx-auto">
       {/* Bio Section */}
-      <section data-bio className="w-full overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
+      <section data-bio className="w-full max-w-[1660px] mx-auto overflow-clip px-4 md:px-8 py-12 md:py-[120px]">
         <div className="flex flex-col gap-6">
           {/* Top label + divider */}
           <div className="flex flex-col gap-3 items-end">
@@ -184,7 +197,7 @@ export default function Home() {
         </div>
       </section>
       {/* About Section */}
-      <section data-about className="w-full overflow-clip px-4 md:px-8 py-12 md:py-20">
+      <section data-about className="w-full max-w-[1660px] mx-auto overflow-clip px-4 md:px-8 py-12 md:py-20">
         <div className="flex flex-col md:flex-row items-start justify-between gap-5 md:gap-8">
           {/* Labels — on mobile: stacked 002 + [ About ]; on desktop: just [ About ] */}
           <div className="flex flex-col gap-2 shrink-0">
@@ -266,8 +279,8 @@ export default function Home() {
         </div>
       </section>
       {/* Services / Deliverables Section */}
-      <section data-services data-nav-dark className="w-full bg-black text-white overflow-clip px-4 md:px-8 py-16 md:py-20">
-        <div className="flex flex-col gap-10 md:gap-12">
+      <section data-services data-nav-dark className="w-full bg-black text-white overflow-clip py-16 md:py-20">
+        <div className="max-w-[1660px] mx-auto px-4 md:px-8 flex flex-col gap-10 md:gap-12">
           {/* Header */}
           <span data-services-header className="font-mono text-sm uppercase leading-[1.1]">
             [ services ]
@@ -332,7 +345,7 @@ export default function Home() {
         </div>
       </section>
       {/* Selected Work Section */}
-      <section data-portfolio className="w-full overflow-clip px-4 md:px-8 py-16 md:py-20">
+      <section data-portfolio className="w-full max-w-[1660px] mx-auto overflow-clip px-4 md:px-8 py-16 md:py-20">
         <div className="flex flex-col gap-10 md:gap-[61px]">
           {/* Header */}
           <div data-portfolio-header className="flex items-center justify-between">
@@ -378,23 +391,18 @@ export default function Home() {
           {/* Portfolio Grid */}
           {/* Mobile: single column */}
           <div className="md:hidden flex flex-col gap-8">
-            {[
-              { title: "Surfers Paradise", image: "/pictures/Page 1/Frame 3763.jpg", tags: ["Social Media", "Photography"] },
-              { title: "Cyberpunk Caffe", image: "/pictures/Page 1/Frame 3763_2.jpg", tags: ["Social Media", "Photography"] },
-              { title: "Agency 976", image: "/pictures/Page 1/Frame 3763_3.jpg", tags: ["Social Media", "Photography"] },
-              { title: "Minimal Playground", image: "/pictures/Page 1/Frame 3763_4.jpg", tags: ["Social Media", "Photography"] },
-            ].map((project) => (
-              <a href="#" key={project.title} className="flex flex-col gap-2">
+            {projects.map((project: any) => (
+              <a href="#" key={project._id} className="flex flex-col gap-2">
                 <div className="relative w-full aspect-[3/4]">
                   <Image
-                    src={project.image}
+                    src={urlFor(project.image).width(800).height(1067).url()}
                     alt={project.title}
                     fill
                     className="object-cover"
                     sizes="100vw"
                   />
                   <div className="absolute bottom-4 left-4 flex gap-3">
-                    {project.tags.map((tag) => (
+                    {project.tags?.map((tag: string) => (
                       <span
                         key={tag}
                         className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full whitespace-nowrap"
@@ -441,45 +449,27 @@ export default function Home() {
           <div className="hidden md:flex gap-6 items-stretch">
             {/* Left column */}
             <div className="flex-1 flex flex-col justify-between">
-              {/* Project 1: Surfers Paradise */}
-              <a href="#" data-portfolio-item className="group flex flex-col gap-[10px]">
-                <div className="relative w-full h-[744px] overflow-hidden">
-                  <Image src="/pictures/Page 1/Frame 3763.jpg" alt="Surfers Paradise" fill className="object-cover object-left transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
-                  <div className="absolute bottom-4 left-4 flex gap-3">
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+              {projects.filter((_: any, i: number) => i % 2 === 0).map((project: any, i: number) => (
+                <a href="#" key={project._id} data-portfolio-item className="group flex flex-col gap-[10px]">
+                  <div className={`relative w-full ${i === 0 ? "h-[744px]" : "h-[699px]"} overflow-hidden`}>
+                    <Image src={urlFor(project.image).width(1000).height(i === 0 ? 744 : 699).url()} alt={project.title} fill className={`object-cover ${i === 0 ? "object-left" : ""} transition-transform duration-500 ease-out group-hover:scale-105`} sizes="50vw" />
+                    <div className="absolute bottom-4 left-4 flex gap-3">
+                      {project.tags?.map((tag: string) => (
+                        <span key={tag} className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">{tag}</span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
-                    Surfers Paradise
-                    <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
-                  </h3>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </a>
-
-              {/* Project 2: Cyberpunk Caffe */}
-              <a href="#" data-portfolio-item className="group flex flex-col gap-[10px]">
-                <div className="relative w-full h-[699px] overflow-hidden">
-                  <Image src="/pictures/Page 1/Frame 3763_2.jpg" alt="Cyberpunk Caffe" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
-                  <div className="absolute bottom-4 left-4 flex gap-3">
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  <div className="flex items-center justify-between">
+                    <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
+                      {project.title}
+                      <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                    </h3>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
-                    Cyberpunk Caffe
-                    <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
-                  </h3>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </a>
+                </a>
+              ))}
 
               {/* CTA with brackets */}
               <div className="w-[465px] flex items-stretch gap-3">
@@ -505,52 +495,34 @@ export default function Home() {
 
             {/* Right column — offset down */}
             <div data-portfolio-right className="flex-1 flex flex-col gap-[117px] pt-[240px]">
-              {/* Project 3: Agency 976 */}
-              <a href="#" data-portfolio-item className="group flex flex-col gap-[10px]">
-                <div className="relative w-full h-[699px] overflow-hidden">
-                  <Image src="/pictures/Page 1/Frame 3763_3.jpg" alt="Agency 976" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
-                  <div className="absolute bottom-4 left-4 flex gap-3">
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+              {projects.filter((_: any, i: number) => i % 2 === 1).map((project: any, i: number) => (
+                <a href="#" key={project._id} data-portfolio-item className="group flex flex-col gap-[10px]">
+                  <div className={`relative w-full ${i === 0 ? "h-[699px]" : "h-[744px]"} overflow-hidden`}>
+                    <Image src={urlFor(project.image).width(1000).height(i === 0 ? 699 : 744).url()} alt={project.title} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
+                    <div className="absolute bottom-4 left-4 flex gap-3">
+                      {project.tags?.map((tag: string) => (
+                        <span key={tag} className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">{tag}</span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
-                    Agency 976
-                    <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
-                  </h3>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </a>
-
-              {/* Project 4: Minimal Playground */}
-              <a href="#" data-portfolio-item className="group flex flex-col gap-[10px]">
-                <div className="relative w-full h-[744px] overflow-hidden">
-                  <Image src="/pictures/Page 1/Frame 3763_4.jpg" alt="Minimal Playground" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" sizes="50vw" />
-                  <div className="absolute bottom-4 left-4 flex gap-3">
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Social Media</span>
-                    <span className="backdrop-blur-[10px] bg-white/30 text-[#111] text-sm font-medium tracking-[-0.04em] px-2 py-1 rounded-full">Photography</span>
+                  <div className="flex items-center justify-between">
+                    <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
+                      {project.title}
+                      <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                    </h3>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <h3 className="relative text-4xl font-black uppercase tracking-[-0.04em] leading-[1.1]">
-                    Minimal Playground
-                    <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
-                  </h3>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </a>
+                </a>
+              ))}
             </div>
           </div>
         </div>
       </section>
       {/* Testimonials Section */}
       {/* Mobile: title + scattered overlapping cards */}
-      <section data-testimonials className="md:hidden w-full py-16 overflow-clip">
+      <section data-testimonials className="md:hidden w-full max-w-[1660px] mx-auto py-16 overflow-clip">
         <h2
           data-testimonials-title
           className="font-medium capitalize leading-[1.1] tracking-[-0.07em] text-black px-4 mb-6"
@@ -587,7 +559,7 @@ export default function Home() {
       </section>
 
       {/* Desktop: scattered cards around large title */}
-      <section data-testimonials className="hidden md:block w-full overflow-clip px-8 py-[120px]">
+      <section data-testimonials className="hidden md:block w-full max-w-[1660px] mx-auto overflow-clip px-8 py-[120px]">
         <div className="relative h-[987px] flex items-center justify-center">
           <h2
             data-testimonials-title
@@ -651,7 +623,8 @@ export default function Home() {
         </div>
       </section>
       {/* News Section */}
-      <section data-news className="w-full bg-[#f3f3f3] overflow-clip px-4 md:px-8 py-16 md:py-[120px]">
+      <section data-news className="w-full bg-[#f3f3f3] overflow-clip py-16 md:py-[120px]">
+        <div className="max-w-[1660px] mx-auto px-4 md:px-8">
         {/* Mobile: horizontal title + scroll */}
         <div className="md:hidden">
           <h2 className="text-2xl font-bold uppercase tracking-[-0.04em] leading-[1.1] mb-6">
@@ -725,12 +698,12 @@ export default function Home() {
             ))}
           </div>
         </div>
+        </div>
       </section>
       </div>
-      </div>
       {/* Footer — revealed from behind the page */}
-      <footer data-footer data-nav-dark className="sticky bottom-0 w-full bg-black text-white overflow-clip px-4 md:px-8 pt-12 md:pt-12">
-        <div className="flex flex-col gap-12 md:gap-[120px]">
+      <footer data-footer data-nav-dark className="sticky bottom-0 w-full bg-black text-white overflow-clip pt-12 md:pt-12">
+        <div className="max-w-[1660px] mx-auto px-4 md:px-8 flex flex-col gap-12 md:gap-[120px]">
           {/* Top area */}
           <div data-footer-content className="flex flex-col gap-8 md:gap-12">
             {/* CTA + Social links */}
